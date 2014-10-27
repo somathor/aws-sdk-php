@@ -68,11 +68,11 @@ class S3Signature implements S3SignatureInterface
 
         // Add the security token header if one is being used by the credentials
         if ($token = $credentials->getSecurityToken()) {
-            $request->setHeader('x-amz-security-token', $token);
+            $request->setHeader('x-nifty-security-token', $token);
         }
 
         // Add a date header if one is not set
-        if (!$request->hasHeader('date') && !$request->hasHeader('x-amz-date')) {
+        if (!$request->hasHeader('date') && !$request->hasHeader('x-nifty-date')) {
             $request->setHeader('Date', gmdate(\DateTime::RFC2822));
         }
 
@@ -81,7 +81,7 @@ class S3Signature implements S3SignatureInterface
 
         $request->setHeader(
             'Authorization',
-            'AWS ' . $credentials->getAccessKeyId() . ':' . $this->signString($stringToSign, $credentials)
+            'NIFTY ' . $credentials->getAccessKeyId() . ':' . $this->signString($stringToSign, $credentials)
         );
     }
 
@@ -106,8 +106,8 @@ class S3Signature implements S3SignatureInterface
 
         // Make sure to handle temporary credentials
         if ($token = $credentials->getSecurityToken()) {
-            $request->setHeader('x-amz-security-token', $token);
-            $request->getQuery()->set('x-amz-security-token', $token);
+            $request->setHeader('x-nifty-security-token', $token);
+            $request->getQuery()->set('x-nifty-security-token', $token);
         }
 
         // Set query params required for pre-signed URLs
@@ -122,7 +122,7 @@ class S3Signature implements S3SignatureInterface
         // Move X-Amz-* headers to the query string
         foreach ($request->getHeaders() as $name => $header) {
             $name = strtolower($name);
-            if (strpos($name, 'x-amz-') === 0) {
+            if (strpos($name, 'x-nifty-') === 0) {
                 $request->getQuery()->set($name, (string) $header);
                 $request->removeHeader($name);
             }
@@ -167,7 +167,7 @@ class S3Signature implements S3SignatureInterface
         $headers = array();
         foreach ($request->getHeaders() as $name => $header) {
             $name = strtolower($name);
-            if (strpos($name, 'x-amz-') === 0) {
+            if (strpos($name, 'x-nifty-') === 0) {
                 $value = trim((string) $header);
                 if ($value || $value === '0') {
                     $headers[$name] = $name . ':' . $value;

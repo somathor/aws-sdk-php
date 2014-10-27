@@ -21,59 +21,19 @@ return array (
     'serviceAbbreviation' => 'Amazon S3',
     'serviceType' => 'rest-xml',
     'timestampFormat' => 'rfc822',
-    'globalEndpoint' => 's3.amazonaws.com',
+    'globalEndpoint' => 'west-1-ncss.nifty.com',
     'signatureVersion' => 's3',
     'namespace' => 'S3',
     'regions' => array(
-        'us-east-1' => array(
+        'east-1' => array(
             'http' => true,
             'https' => true,
-            'hostname' => 's3.amazonaws.com',
+            'hostname' => 'ncss.nifty.com',
         ),
-        'us-west-1' => array(
+        'west-1' => array(
             'http' => true,
             'https' => true,
-            'hostname' => 's3-us-west-1.amazonaws.com',
-        ),
-        'us-west-2' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 's3-us-west-2.amazonaws.com',
-        ),
-        'eu-west-1' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 's3-eu-west-1.amazonaws.com',
-        ),
-        'ap-northeast-1' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 's3-ap-northeast-1.amazonaws.com',
-        ),
-        'ap-southeast-1' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 's3-ap-southeast-1.amazonaws.com',
-        ),
-        'ap-southeast-2' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 's3-ap-southeast-2.amazonaws.com',
-        ),
-        'sa-east-1' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 's3-sa-east-1.amazonaws.com',
-        ),
-        'cn-north-1' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 's3.cn-north-1.amazonaws.com.cn',
-        ),
-        'us-gov-west-1' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 's3-us-gov-west-1.amazonaws.com',
+            'hostname' => 'west-1-ncss.nifty.com',
         ),
     ),
     'operations' => array(
@@ -85,19 +45,6 @@ return array (
             'responseType' => 'model',
             'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadAbort.html',
             'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'Key' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                    'filters' => array(
-                        'Aws\\S3\\S3Client::explodeKey',
-                    ),
-                ),
                 'UploadId' => array(
                     'required' => true,
                     'type' => 'string',
@@ -173,204 +120,6 @@ return array (
                 ),
             ),
         ),
-        'CopyObject' => array(
-            'httpMethod' => 'PUT',
-            'uri' => '/{Bucket}{/Key*}',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'CopyObjectOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html',
-            'data' => array(
-                'xmlRoot' => array(
-                    'name' => 'CopyObjectRequest',
-                    'namespaces' => array(
-                        'http://s3.amazonaws.com/doc/2006-03-01/',
-                    ),
-                ),
-            ),
-            'parameters' => array(
-                'ACL' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-acl',
-                ),
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'CacheControl' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'Cache-Control',
-                ),
-                'ContentDisposition' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'Content-Disposition',
-                ),
-                'ContentEncoding' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'Content-Encoding',
-                ),
-                'ContentLanguage' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'Content-Language',
-                ),
-                'ContentType' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'Content-Type',
-                ),
-                'CopySource' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source',
-                ),
-                'CopySourceIfMatch' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-if-match',
-                ),
-                'CopySourceIfModifiedSince' => array(
-                    'type' => array(
-                        'object',
-                        'string',
-                        'integer',
-                    ),
-                    'format' => 'date-time-http',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-if-modified-since',
-                ),
-                'CopySourceIfNoneMatch' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-if-none-match',
-                ),
-                'CopySourceIfUnmodifiedSince' => array(
-                    'type' => array(
-                        'object',
-                        'string',
-                        'integer',
-                    ),
-                    'format' => 'date-time-http',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-if-unmodified-since',
-                ),
-                'Expires' => array(
-                    'type' => array(
-                        'object',
-                        'string',
-                        'integer',
-                    ),
-                    'format' => 'date-time-http',
-                    'location' => 'header',
-                ),
-                'GrantFullControl' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-grant-full-control',
-                ),
-                'GrantRead' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-grant-read',
-                ),
-                'GrantReadACP' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-grant-read-acp',
-                ),
-                'GrantWriteACP' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-grant-write-acp',
-                ),
-                'Key' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                    'filters' => array(
-                        'Aws\\S3\\S3Client::explodeKey',
-                    ),
-                ),
-                'Metadata' => array(
-                    'type' => 'object',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-meta-',
-                    'additionalProperties' => array(
-                        'type' => 'string',
-                    ),
-                ),
-                'MetadataDirective' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-metadata-directive',
-                ),
-                'ServerSideEncryption' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption',
-                ),
-                'StorageClass' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-storage-class',
-                ),
-                'WebsiteRedirectLocation' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-website-redirect-location',
-                ),
-                'SSECustomerAlgorithm' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
-                ),
-                'SSECustomerKey' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key',
-                ),
-                'SSECustomerKeyMD5' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
-                ),
-                'CopySourceSSECustomerAlgorithm' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-server-side-encryption-customer-algorithm',
-                ),
-                'CopySourceSSECustomerKey' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-server-side-encryption-customer-key',
-                ),
-                'CopySourceSSECustomerKeyMD5' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-server-side-encryption-customer-key-MD5',
-                ),
-                'ACP' => array(
-                    'type' => 'object',
-                    'additionalProperties' => true,
-                ),
-                'command.expects' => array(
-                    'static' => true,
-                    'default' => 'application/xml',
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'The source object of the COPY operation is not in the active tier and is only stored in Amazon Glacier.',
-                    'class' => 'ObjectNotInActiveTierErrorException',
-                ),
-            ),
-        ),
         'CreateBucket' => array(
             'httpMethod' => 'PUT',
             'uri' => '/{Bucket}',
@@ -390,7 +139,7 @@ return array (
                 'ACL' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-acl',
+                    'sentAs' => 'x-nifty-acl',
                 ),
                 'Bucket' => array(
                     'required' => true,
@@ -400,35 +149,6 @@ return array (
                 'LocationConstraint' => array(
                     'type' => 'string',
                     'location' => 'xml',
-                ),
-                'GrantFullControl' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-grant-full-control',
-                ),
-                'GrantRead' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-grant-read',
-                ),
-                'GrantReadACP' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-grant-read-acp',
-                ),
-                'GrantWrite' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-grant-write',
-                ),
-                'GrantWriteACP' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-grant-write-acp',
-                ),
-                'ACP' => array(
-                    'type' => 'object',
-                    'additionalProperties' => true,
                 ),
             ),
             'errorResponses' => array(
@@ -457,7 +177,7 @@ return array (
                 'ACL' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-acl',
+                    'sentAs' => 'x-nifty-acl',
                 ),
                 'Bucket' => array(
                     'required' => true,
@@ -498,26 +218,6 @@ return array (
                     'format' => 'date-time-http',
                     'location' => 'header',
                 ),
-                'GrantFullControl' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-grant-full-control',
-                ),
-                'GrantRead' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-grant-read',
-                ),
-                'GrantReadACP' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-grant-read-acp',
-                ),
-                'GrantWriteACP' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-grant-write-acp',
-                ),
                 'Key' => array(
                     'required' => true,
                     'type' => 'string',
@@ -529,44 +229,10 @@ return array (
                 'Metadata' => array(
                     'type' => 'object',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-meta-',
+                    'sentAs' => 'x-nifty-meta-',
                     'additionalProperties' => array(
                         'type' => 'string',
                     ),
-                ),
-                'ServerSideEncryption' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption',
-                ),
-                'StorageClass' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-storage-class',
-                ),
-                'WebsiteRedirectLocation' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-website-redirect-location',
-                ),
-                'SSECustomerAlgorithm' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
-                ),
-                'SSECustomerKey' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key',
-                ),
-                'SSECustomerKeyMD5' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
-                ),
-                'ACP' => array(
-                    'type' => 'object',
-                    'additionalProperties' => true,
                 ),
                 'command.expects' => array(
                     'static' => true,
@@ -581,81 +247,6 @@ return array (
             'responseClass' => 'DeleteBucketOutput',
             'responseType' => 'model',
             'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETE.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-            ),
-        ),
-        'DeleteBucketCors' => array(
-            'httpMethod' => 'DELETE',
-            'uri' => '/{Bucket}?cors',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'DeleteBucketCorsOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEcors.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-            ),
-        ),
-        'DeleteBucketLifecycle' => array(
-            'httpMethod' => 'DELETE',
-            'uri' => '/{Bucket}?lifecycle',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'DeleteBucketLifecycleOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETElifecycle.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-            ),
-        ),
-        'DeleteBucketPolicy' => array(
-            'httpMethod' => 'DELETE',
-            'uri' => '/{Bucket}?policy',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'DeleteBucketPolicyOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEpolicy.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-            ),
-        ),
-        'DeleteBucketTagging' => array(
-            'httpMethod' => 'DELETE',
-            'uri' => '/{Bucket}?tagging',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'DeleteBucketTaggingOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEtagging.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-            ),
-        ),
-        'DeleteBucketWebsite' => array(
-            'httpMethod' => 'DELETE',
-            'uri' => '/{Bucket}?website',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'DeleteBucketWebsiteOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEwebsite.html',
             'parameters' => array(
                 'Bucket' => array(
                     'required' => true,
@@ -685,75 +276,10 @@ return array (
                         'Aws\\S3\\S3Client::explodeKey',
                     ),
                 ),
-                'MFA' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-mfa',
-                ),
                 'VersionId' => array(
                     'type' => 'string',
                     'location' => 'query',
                     'sentAs' => 'versionId',
-                ),
-            ),
-        ),
-        'DeleteObjects' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/{Bucket}?delete',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'DeleteObjectsOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html',
-            'data' => array(
-                'xmlRoot' => array(
-                    'name' => 'Delete',
-                    'namespaces' => array(
-                        'http://s3.amazonaws.com/doc/2006-03-01/',
-                    ),
-                ),
-                'contentMd5' => true,
-            ),
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'Objects' => array(
-                    'required' => true,
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'data' => array(
-                        'xmlFlattened' => true,
-                    ),
-                    'items' => array(
-                        'name' => 'ObjectIdentifier',
-                        'type' => 'object',
-                        'sentAs' => 'Object',
-                        'properties' => array(
-                            'Key' => array(
-                                'required' => true,
-                                'type' => 'string',
-                            ),
-                            'VersionId' => array(
-                                'type' => 'string',
-                            ),
-                        ),
-                    ),
-                ),
-                'Quiet' => array(
-                    'type' => 'boolean',
-                    'format' => 'boolean-string',
-                    'location' => 'xml',
-                ),
-                'MFA' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-mfa',
-                ),
-                'command.expects' => array(
-                    'static' => true,
-                    'default' => 'application/xml',
                 ),
             ),
         ),
@@ -764,44 +290,6 @@ return array (
             'responseClass' => 'GetBucketAclOutput',
             'responseType' => 'model',
             'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETacl.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'command.expects' => array(
-                    'static' => true,
-                    'default' => 'application/xml',
-                ),
-            ),
-        ),
-        'GetBucketCors' => array(
-            'httpMethod' => 'GET',
-            'uri' => '/{Bucket}?cors',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'GetBucketCorsOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETcors.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'command.expects' => array(
-                    'static' => true,
-                    'default' => 'application/xml',
-                ),
-            ),
-        ),
-        'GetBucketLifecycle' => array(
-            'httpMethod' => 'GET',
-            'uri' => '/{Bucket}?lifecycle',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'GetBucketLifecycleOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlifecycle.html',
             'parameters' => array(
                 'Bucket' => array(
                     'required' => true,
@@ -848,78 +336,6 @@ return array (
                 ),
             ),
         ),
-        'GetBucketNotification' => array(
-            'httpMethod' => 'GET',
-            'uri' => '/{Bucket}?notification',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'GetBucketNotificationOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETnotification.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'command.expects' => array(
-                    'static' => true,
-                    'default' => 'application/xml',
-                ),
-            ),
-        ),
-        'GetBucketPolicy' => array(
-            'httpMethod' => 'GET',
-            'uri' => '/{Bucket}?policy',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'GetBucketPolicyOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETpolicy.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-            ),
-        ),
-        'GetBucketRequestPayment' => array(
-            'httpMethod' => 'GET',
-            'uri' => '/{Bucket}?requestPayment',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'GetBucketRequestPaymentOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTrequestPaymentGET.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'command.expects' => array(
-                    'static' => true,
-                    'default' => 'application/xml',
-                ),
-            ),
-        ),
-        'GetBucketTagging' => array(
-            'httpMethod' => 'GET',
-            'uri' => '/{Bucket}?tagging',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'GetBucketTaggingOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETtagging.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'command.expects' => array(
-                    'static' => true,
-                    'default' => 'application/xml',
-                ),
-            ),
-        ),
         'GetBucketVersioning' => array(
             'httpMethod' => 'GET',
             'uri' => '/{Bucket}?versioning',
@@ -927,25 +343,6 @@ return array (
             'responseClass' => 'GetBucketVersioningOutput',
             'responseType' => 'model',
             'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETversioningStatus.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'command.expects' => array(
-                    'static' => true,
-                    'default' => 'application/xml',
-                ),
-            ),
-        ),
-        'GetBucketWebsite' => array(
-            'httpMethod' => 'GET',
-            'uri' => '/{Bucket}?website',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'GetBucketWebsiteOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETwebsite.html',
             'parameters' => array(
                 'Bucket' => array(
                     'required' => true,
@@ -971,36 +368,6 @@ return array (
                     'type' => 'string',
                     'location' => 'uri',
                 ),
-                'IfMatch' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'If-Match',
-                ),
-                'IfModifiedSince' => array(
-                    'type' => array(
-                        'object',
-                        'string',
-                        'integer',
-                    ),
-                    'format' => 'date-time-http',
-                    'location' => 'header',
-                    'sentAs' => 'If-Modified-Since',
-                ),
-                'IfNoneMatch' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'If-None-Match',
-                ),
-                'IfUnmodifiedSince' => array(
-                    'type' => array(
-                        'object',
-                        'string',
-                        'integer',
-                    ),
-                    'format' => 'date-time-http',
-                    'location' => 'header',
-                    'sentAs' => 'If-Unmodified-Since',
-                ),
                 'Key' => array(
                     'required' => true,
                     'type' => 'string',
@@ -1013,60 +380,10 @@ return array (
                     'type' => 'string',
                     'location' => 'header',
                 ),
-                'ResponseCacheControl' => array(
-                    'type' => 'string',
-                    'location' => 'query',
-                    'sentAs' => 'response-cache-control',
-                ),
-                'ResponseContentDisposition' => array(
-                    'type' => 'string',
-                    'location' => 'query',
-                    'sentAs' => 'response-content-disposition',
-                ),
-                'ResponseContentEncoding' => array(
-                    'type' => 'string',
-                    'location' => 'query',
-                    'sentAs' => 'response-content-encoding',
-                ),
-                'ResponseContentLanguage' => array(
-                    'type' => 'string',
-                    'location' => 'query',
-                    'sentAs' => 'response-content-language',
-                ),
-                'ResponseContentType' => array(
-                    'type' => 'string',
-                    'location' => 'query',
-                    'sentAs' => 'response-content-type',
-                ),
-                'ResponseExpires' => array(
-                    'type' => array(
-                        'object',
-                        'string',
-                        'integer',
-                    ),
-                    'format' => 'date-time-http',
-                    'location' => 'query',
-                    'sentAs' => 'response-expires',
-                ),
                 'VersionId' => array(
                     'type' => 'string',
                     'location' => 'query',
                     'sentAs' => 'versionId',
-                ),
-                'SSECustomerAlgorithm' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
-                ),
-                'SSECustomerKey' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key',
-                ),
-                'SSECustomerKeyMD5' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
                 ),
                 'SaveAs' => array(
                     'location' => 'response_body',
@@ -1117,50 +434,6 @@ return array (
                 ),
             ),
         ),
-        'GetObjectTorrent' => array(
-            'httpMethod' => 'GET',
-            'uri' => '/{Bucket}{/Key*}?torrent',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'GetObjectTorrentOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGETtorrent.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'Key' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                    'filters' => array(
-                        'Aws\\S3\\S3Client::explodeKey',
-                    ),
-                ),
-            ),
-        ),
-        'HeadBucket' => array(
-            'httpMethod' => 'HEAD',
-            'uri' => '/{Bucket}',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'HeadBucketOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketHEAD.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'The specified bucket does not exist.',
-                    'class' => 'NoSuchBucketException',
-                ),
-            ),
-        ),
         'HeadObject' => array(
             'httpMethod' => 'HEAD',
             'uri' => '/{Bucket}{/Key*}',
@@ -1173,36 +446,6 @@ return array (
                     'required' => true,
                     'type' => 'string',
                     'location' => 'uri',
-                ),
-                'IfMatch' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'If-Match',
-                ),
-                'IfModifiedSince' => array(
-                    'type' => array(
-                        'object',
-                        'string',
-                        'integer',
-                    ),
-                    'format' => 'date-time-http',
-                    'location' => 'header',
-                    'sentAs' => 'If-Modified-Since',
-                ),
-                'IfNoneMatch' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'If-None-Match',
-                ),
-                'IfUnmodifiedSince' => array(
-                    'type' => array(
-                        'object',
-                        'string',
-                        'integer',
-                    ),
-                    'format' => 'date-time-http',
-                    'location' => 'header',
-                    'sentAs' => 'If-Unmodified-Since',
                 ),
                 'Key' => array(
                     'required' => true,
@@ -1221,21 +464,6 @@ return array (
                     'location' => 'query',
                     'sentAs' => 'versionId',
                 ),
-                'SSECustomerAlgorithm' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
-                ),
-                'SSECustomerKey' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key',
-                ),
-                'SSECustomerKeyMD5' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
-                ),
             ),
             'errorResponses' => array(
                 array(
@@ -1252,55 +480,6 @@ return array (
             'responseType' => 'model',
             'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTServiceGET.html',
             'parameters' => array(
-                'command.expects' => array(
-                    'static' => true,
-                    'default' => 'application/xml',
-                ),
-            ),
-        ),
-        'ListMultipartUploads' => array(
-            'httpMethod' => 'GET',
-            'uri' => '/{Bucket}?uploads',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'ListMultipartUploadsOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListMPUpload.html',
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'Delimiter' => array(
-                    'type' => 'string',
-                    'location' => 'query',
-                    'sentAs' => 'delimiter',
-                ),
-                'EncodingType' => array(
-                    'type' => 'string',
-                    'location' => 'query',
-                    'sentAs' => 'encoding-type',
-                ),
-                'KeyMarker' => array(
-                    'type' => 'string',
-                    'location' => 'query',
-                    'sentAs' => 'key-marker',
-                ),
-                'MaxUploads' => array(
-                    'type' => 'numeric',
-                    'location' => 'query',
-                    'sentAs' => 'max-uploads',
-                ),
-                'Prefix' => array(
-                    'type' => 'string',
-                    'location' => 'query',
-                    'sentAs' => 'prefix',
-                ),
-                'UploadIdMarker' => array(
-                    'type' => 'string',
-                    'location' => 'query',
-                    'sentAs' => 'upload-id-marker',
-                ),
                 'command.expects' => array(
                     'static' => true,
                     'default' => 'application/xml',
@@ -1468,7 +647,7 @@ return array (
                 'ACL' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-acl',
+                    'sentAs' => 'x-nifty-acl',
                 ),
                 'Grants' => array(
                     'type' => 'array',
@@ -1530,220 +709,31 @@ return array (
                 'GrantFullControl' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-full-control',
+                    'sentAs' => 'x-nifty-grant-full-control',
                 ),
                 'GrantRead' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-read',
+                    'sentAs' => 'x-nifty-grant-read',
                 ),
                 'GrantReadACP' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-read-acp',
+                    'sentAs' => 'x-nifty-grant-read-acp',
                 ),
                 'GrantWrite' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-write',
+                    'sentAs' => 'x-nifty-grant-write',
                 ),
                 'GrantWriteACP' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-write-acp',
+                    'sentAs' => 'x-nifty-grant-write-acp',
                 ),
                 'ACP' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
-                ),
-            ),
-        ),
-        'PutBucketCors' => array(
-            'httpMethod' => 'PUT',
-            'uri' => '/{Bucket}?cors',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'PutBucketCorsOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTcors.html',
-            'data' => array(
-                'xmlRoot' => array(
-                    'name' => 'CORSConfiguration',
-                    'namespaces' => array(
-                        'http://s3.amazonaws.com/doc/2006-03-01/',
-                    ),
-                ),
-                'contentMd5' => true,
-            ),
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'CORSRules' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'data' => array(
-                        'xmlFlattened' => true,
-                    ),
-                    'items' => array(
-                        'name' => 'CORSRule',
-                        'type' => 'object',
-                        'sentAs' => 'CORSRule',
-                        'properties' => array(
-                            'AllowedHeaders' => array(
-                                'type' => 'array',
-                                'data' => array(
-                                    'xmlFlattened' => true,
-                                ),
-                                'items' => array(
-                                    'name' => 'AllowedHeader',
-                                    'type' => 'string',
-                                    'sentAs' => 'AllowedHeader',
-                                ),
-                            ),
-                            'AllowedMethods' => array(
-                                'type' => 'array',
-                                'data' => array(
-                                    'xmlFlattened' => true,
-                                ),
-                                'items' => array(
-                                    'name' => 'AllowedMethod',
-                                    'type' => 'string',
-                                    'sentAs' => 'AllowedMethod',
-                                ),
-                            ),
-                            'AllowedOrigins' => array(
-                                'type' => 'array',
-                                'data' => array(
-                                    'xmlFlattened' => true,
-                                ),
-                                'items' => array(
-                                    'name' => 'AllowedOrigin',
-                                    'type' => 'string',
-                                    'sentAs' => 'AllowedOrigin',
-                                ),
-                            ),
-                            'ExposeHeaders' => array(
-                                'type' => 'array',
-                                'data' => array(
-                                    'xmlFlattened' => true,
-                                ),
-                                'items' => array(
-                                    'name' => 'ExposeHeader',
-                                    'type' => 'string',
-                                    'sentAs' => 'ExposeHeader',
-                                ),
-                            ),
-                            'MaxAgeSeconds' => array(
-                                'type' => 'numeric',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-        'PutBucketLifecycle' => array(
-            'httpMethod' => 'PUT',
-            'uri' => '/{Bucket}?lifecycle',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'PutBucketLifecycleOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTlifecycle.html',
-            'data' => array(
-                'xmlRoot' => array(
-                    'name' => 'LifecycleConfiguration',
-                    'namespaces' => array(
-                        'http://s3.amazonaws.com/doc/2006-03-01/',
-                    ),
-                ),
-                'contentMd5' => true,
-            ),
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'Rules' => array(
-                    'required' => true,
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'data' => array(
-                        'xmlFlattened' => true,
-                    ),
-                    'items' => array(
-                        'name' => 'Rule',
-                        'type' => 'object',
-                        'sentAs' => 'Rule',
-                        'properties' => array(
-                            'Expiration' => array(
-                                'type' => 'object',
-                                'properties' => array(
-                                    'Date' => array(
-                                        'type' => array(
-                                            'object',
-                                            'string',
-                                            'integer',
-                                        ),
-                                        'format' => 'date-time',
-                                    ),
-                                    'Days' => array(
-                                        'type' => 'numeric',
-                                    ),
-                                ),
-                            ),
-                            'ID' => array(
-                                'type' => 'string',
-                            ),
-                            'Prefix' => array(
-                                'required' => true,
-                                'type' => 'string',
-                            ),
-                            'Status' => array(
-                                'required' => true,
-                                'type' => 'string',
-                            ),
-                            'Transition' => array(
-                                'type' => 'object',
-                                'properties' => array(
-                                    'Date' => array(
-                                        'type' => array(
-                                            'object',
-                                            'string',
-                                            'integer',
-                                        ),
-                                        'format' => 'date-time',
-                                    ),
-                                    'Days' => array(
-                                        'type' => 'numeric',
-                                    ),
-                                    'StorageClass' => array(
-                                        'type' => 'string',
-                                    ),
-                                ),
-                            ),
-                            'NoncurrentVersionTransition' => array(
-                                'type' => 'object',
-                                'properties' => array(
-                                    'NoncurrentDays' => array(
-                                        'type' => 'numeric',
-                                    ),
-                                    'StorageClass' => array(
-                                        'type' => 'string',
-                                    ),
-                                ),
-                            ),
-                            'NoncurrentVersionExpiration' => array(
-                                'type' => 'object',
-                                'properties' => array(
-                                    'NoncurrentDays' => array(
-                                        'type' => 'numeric',
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
                 ),
             ),
         ),
@@ -1821,144 +811,6 @@ return array (
                 ),
             ),
         ),
-        'PutBucketNotification' => array(
-            'httpMethod' => 'PUT',
-            'uri' => '/{Bucket}?notification',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'PutBucketNotificationOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTnotification.html',
-            'data' => array(
-                'xmlRoot' => array(
-                    'name' => 'NotificationConfiguration',
-                    'namespaces' => array(
-                        'http://s3.amazonaws.com/doc/2006-03-01/',
-                    ),
-                ),
-            ),
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'TopicConfiguration' => array(
-                    'required' => true,
-                    'type' => 'object',
-                    'location' => 'xml',
-                    'properties' => array(
-                        'Event' => array(
-                            'type' => 'string',
-                        ),
-                        'Topic' => array(
-                            'type' => 'string',
-                        ),
-                    ),
-                ),
-            ),
-        ),
-        'PutBucketPolicy' => array(
-            'httpMethod' => 'PUT',
-            'uri' => '/{Bucket}?policy',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'PutBucketPolicyOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTpolicy.html',
-            'data' => array(
-                'xmlRoot' => array(
-                    'name' => 'PutBucketPolicyRequest',
-                    'namespaces' => array(
-                        'http://s3.amazonaws.com/doc/2006-03-01/',
-                    ),
-                ),
-            ),
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'Policy' => array(
-                    'required' => true,
-                    'type' => array(
-                        'string',
-                        'object',
-                    ),
-                    'location' => 'body',
-                ),
-            ),
-        ),
-        'PutBucketRequestPayment' => array(
-            'httpMethod' => 'PUT',
-            'uri' => '/{Bucket}?requestPayment',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'PutBucketRequestPaymentOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTrequestPaymentPUT.html',
-            'data' => array(
-                'xmlRoot' => array(
-                    'name' => 'RequestPaymentConfiguration',
-                    'namespaces' => array(
-                        'http://s3.amazonaws.com/doc/2006-03-01/',
-                    ),
-                ),
-            ),
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'Payer' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'xml',
-                ),
-            ),
-        ),
-        'PutBucketTagging' => array(
-            'httpMethod' => 'PUT',
-            'uri' => '/{Bucket}?tagging',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'PutBucketTaggingOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTtagging.html',
-            'data' => array(
-                'xmlRoot' => array(
-                    'name' => 'Tagging',
-                    'namespaces' => array(
-                        'http://s3.amazonaws.com/doc/2006-03-01/',
-                    ),
-                ),
-                'contentMd5' => true,
-            ),
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'TagSet' => array(
-                    'required' => true,
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'items' => array(
-                        'name' => 'Tag',
-                        'type' => 'object',
-                        'properties' => array(
-                            'Key' => array(
-                                'required' => true,
-                                'type' => 'string',
-                            ),
-                            'Value' => array(
-                                'required' => true,
-                                'type' => 'string',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
         'PutBucketVersioning' => array(
             'httpMethod' => 'PUT',
             'uri' => '/{Bucket}?versioning',
@@ -1980,118 +832,9 @@ return array (
                     'type' => 'string',
                     'location' => 'uri',
                 ),
-                'MFA' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-mfa',
-                ),
-                'MFADelete' => array(
-                    'type' => 'string',
-                    'location' => 'xml',
-                    'sentAs' => 'MfaDelete',
-                ),
                 'Status' => array(
                     'type' => 'string',
                     'location' => 'xml',
-                ),
-            ),
-        ),
-        'PutBucketWebsite' => array(
-            'httpMethod' => 'PUT',
-            'uri' => '/{Bucket}?website',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'PutBucketWebsiteOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTwebsite.html',
-            'data' => array(
-                'xmlRoot' => array(
-                    'name' => 'WebsiteConfiguration',
-                    'namespaces' => array(
-                        'http://s3.amazonaws.com/doc/2006-03-01/',
-                    ),
-                ),
-                'xmlAllowEmpty' => true,
-            ),
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'ErrorDocument' => array(
-                    'type' => 'object',
-                    'location' => 'xml',
-                    'properties' => array(
-                        'Key' => array(
-                            'required' => true,
-                            'type' => 'string',
-                        ),
-                    ),
-                ),
-                'IndexDocument' => array(
-                    'type' => 'object',
-                    'location' => 'xml',
-                    'properties' => array(
-                        'Suffix' => array(
-                            'required' => true,
-                            'type' => 'string',
-                        ),
-                    ),
-                ),
-                'RedirectAllRequestsTo' => array(
-                    'type' => 'object',
-                    'location' => 'xml',
-                    'properties' => array(
-                        'HostName' => array(
-                            'required' => true,
-                            'type' => 'string',
-                        ),
-                        'Protocol' => array(
-                            'type' => 'string',
-                        ),
-                    ),
-                ),
-                'RoutingRules' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'items' => array(
-                        'name' => 'RoutingRule',
-                        'type' => 'object',
-                        'properties' => array(
-                            'Condition' => array(
-                                'type' => 'object',
-                                'properties' => array(
-                                    'HttpErrorCodeReturnedEquals' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'KeyPrefixEquals' => array(
-                                        'type' => 'string',
-                                    ),
-                                ),
-                            ),
-                            'Redirect' => array(
-                                'required' => true,
-                                'type' => 'object',
-                                'properties' => array(
-                                    'HostName' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'HttpRedirectCode' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'Protocol' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'ReplaceKeyPrefixWith' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'ReplaceKeyWith' => array(
-                                        'type' => 'string',
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
                 ),
             ),
         ),
@@ -2114,7 +857,7 @@ return array (
                 'ACL' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-acl',
+                    'sentAs' => 'x-nifty-acl',
                 ),
                 'Body' => array(
                     'type' => array(
@@ -2178,22 +921,22 @@ return array (
                 'GrantFullControl' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-full-control',
+                    'sentAs' => 'x-nifty-grant-full-control',
                 ),
                 'GrantRead' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-read',
+                    'sentAs' => 'x-nifty-grant-read',
                 ),
                 'GrantReadACP' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-read-acp',
+                    'sentAs' => 'x-nifty-grant-read-acp',
                 ),
                 'GrantWriteACP' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-write-acp',
+                    'sentAs' => 'x-nifty-grant-write-acp',
                 ),
                 'Key' => array(
                     'required' => true,
@@ -2206,40 +949,10 @@ return array (
                 'Metadata' => array(
                     'type' => 'object',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-meta-',
+                    'sentAs' => 'x-nifty-meta-',
                     'additionalProperties' => array(
                         'type' => 'string',
                     ),
-                ),
-                'ServerSideEncryption' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption',
-                ),
-                'StorageClass' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-storage-class',
-                ),
-                'WebsiteRedirectLocation' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-website-redirect-location',
-                ),
-                'SSECustomerAlgorithm' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
-                ),
-                'SSECustomerKey' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key',
-                ),
-                'SSECustomerKeyMD5' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
                 ),
                 'ACP' => array(
                     'type' => 'object',
@@ -2266,7 +979,7 @@ return array (
                 'ACL' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-acl',
+                    'sentAs' => 'x-nifty-acl',
                 ),
                 'Grants' => array(
                     'type' => 'array',
@@ -2328,27 +1041,27 @@ return array (
                 'GrantFullControl' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-full-control',
+                    'sentAs' => 'x-nifty-grant-full-control',
                 ),
                 'GrantRead' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-read',
+                    'sentAs' => 'x-nifty-grant-read',
                 ),
                 'GrantReadACP' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-read-acp',
+                    'sentAs' => 'x-nifty-grant-read-acp',
                 ),
                 'GrantWrite' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-write',
+                    'sentAs' => 'x-nifty-grant-write',
                 ),
                 'GrantWriteACP' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-grant-write-acp',
+                    'sentAs' => 'x-nifty-grant-write-acp',
                 ),
                 'Key' => array(
                     'required' => true,
@@ -2367,53 +1080,6 @@ return array (
                 array(
                     'reason' => 'The specified key does not exist.',
                     'class' => 'NoSuchKeyException',
-                ),
-            ),
-        ),
-        'RestoreObject' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/{Bucket}{/Key*}?restore',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'RestoreObjectOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectRestore.html',
-            'data' => array(
-                'xmlRoot' => array(
-                    'name' => 'RestoreRequest',
-                    'namespaces' => array(
-                        'http://s3.amazonaws.com/doc/2006-03-01/',
-                    ),
-                ),
-            ),
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'Key' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                    'filters' => array(
-                        'Aws\\S3\\S3Client::explodeKey',
-                    ),
-                ),
-                'VersionId' => array(
-                    'type' => 'string',
-                    'location' => 'query',
-                    'sentAs' => 'versionId',
-                ),
-                'Days' => array(
-                    'required' => true,
-                    'type' => 'numeric',
-                    'location' => 'xml',
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'This operation is not allowed against this storage tier',
-                    'class' => 'ObjectAlreadyInActiveTierErrorException',
                 ),
             ),
         ),
@@ -2478,139 +1144,6 @@ return array (
                     'location' => 'query',
                     'sentAs' => 'uploadId',
                 ),
-                'SSECustomerAlgorithm' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
-                ),
-                'SSECustomerKey' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key',
-                ),
-                'SSECustomerKeyMD5' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
-                ),
-            ),
-        ),
-        'UploadPartCopy' => array(
-            'httpMethod' => 'PUT',
-            'uri' => '/{Bucket}{/Key*}',
-            'class' => 'Aws\\S3\\Command\\S3Command',
-            'responseClass' => 'UploadPartCopyOutput',
-            'responseType' => 'model',
-            'documentationUrl' => 'http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadUploadPartCopy.html',
-            'data' => array(
-                'xmlRoot' => array(
-                    'name' => 'UploadPartCopyRequest',
-                    'namespaces' => array(
-                        'http://s3.amazonaws.com/doc/2006-03-01/',
-                    ),
-                ),
-            ),
-            'parameters' => array(
-                'Bucket' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                ),
-                'CopySource' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source',
-                ),
-                'CopySourceIfMatch' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-if-match',
-                ),
-                'CopySourceIfModifiedSince' => array(
-                    'type' => array(
-                        'object',
-                        'string',
-                        'integer',
-                    ),
-                    'format' => 'date-time-http',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-if-modified-since',
-                ),
-                'CopySourceIfNoneMatch' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-if-none-match',
-                ),
-                'CopySourceIfUnmodifiedSince' => array(
-                    'type' => array(
-                        'object',
-                        'string',
-                        'integer',
-                    ),
-                    'format' => 'date-time-http',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-if-unmodified-since',
-                ),
-                'CopySourceRange' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-range',
-                ),
-                'Key' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'uri',
-                    'filters' => array(
-                        'Aws\\S3\\S3Client::explodeKey',
-                    ),
-                ),
-                'PartNumber' => array(
-                    'required' => true,
-                    'type' => 'numeric',
-                    'location' => 'query',
-                    'sentAs' => 'partNumber',
-                ),
-                'UploadId' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'query',
-                    'sentAs' => 'uploadId',
-                ),
-                'SSECustomerAlgorithm' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
-                ),
-                'SSECustomerKey' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key',
-                ),
-                'SSECustomerKeyMD5' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
-                ),
-                'CopySourceSSECustomerAlgorithm' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-server-side-encryption-customer-algorithm',
-                ),
-                'CopySourceSSECustomerKey' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-server-side-encryption-customer-key',
-                ),
-                'CopySourceSSECustomerKeyMD5' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-server-side-encryption-customer-key-MD5',
-                ),
-                'command.expects' => array(
-                    'static' => true,
-                    'default' => 'application/xml',
-                ),
             ),
         ),
     ),
@@ -2621,7 +1154,7 @@ return array (
             'properties' => array(
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -2644,7 +1177,7 @@ return array (
                 'Expiration' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-expiration',
+                    'sentAs' => 'x-nifty-expiration',
                 ),
                 'ETag' => array(
                     'type' => 'string',
@@ -2653,59 +1186,16 @@ return array (
                 'ServerSideEncryption' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption',
+                    'sentAs' => 'x-nifty-server-side-encryption',
                 ),
                 'VersionId' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-version-id',
+                    'sentAs' => 'x-nifty-version-id',
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'CopyObjectOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'ETag' => array(
-                    'type' => 'string',
-                    'location' => 'xml',
-                ),
-                'LastModified' => array(
-                    'type' => 'string',
-                    'location' => 'xml',
-                ),
-                'Expiration' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-expiration',
-                ),
-                'CopySourceVersionId' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-version-id',
-                ),
-                'ServerSideEncryption' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption',
-                ),
-                'SSECustomerAlgorithm' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
-                ),
-                'SSECustomerKeyMD5' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
-                ),
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -2719,7 +1209,7 @@ return array (
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -2743,21 +1233,21 @@ return array (
                 'ServerSideEncryption' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption',
+                    'sentAs' => 'x-nifty-server-side-encryption',
                 ),
                 'SSECustomerAlgorithm' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
+                    'sentAs' => 'x-nifty-server-side-encryption-customer-algorithm',
                 ),
                 'SSECustomerKeyMD5' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
+                    'sentAs' => 'x-nifty-server-side-encryption-customer-key-MD5',
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -2767,57 +1257,7 @@ return array (
             'properties' => array(
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'DeleteBucketCorsOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'DeleteBucketLifecycleOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'DeleteBucketPolicyOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'DeleteBucketTaggingOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'DeleteBucketWebsiteOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -2828,78 +1268,16 @@ return array (
                 'DeleteMarker' => array(
                     'type' => 'boolean',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-delete-marker',
+                    'sentAs' => 'x-nifty-delete-marker',
                 ),
                 'VersionId' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-version-id',
+                    'sentAs' => 'x-nifty-version-id',
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'DeleteObjectsOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'Deleted' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'data' => array(
-                        'xmlFlattened' => true,
-                    ),
-                    'items' => array(
-                        'name' => 'DeletedObject',
-                        'type' => 'object',
-                        'properties' => array(
-                            'Key' => array(
-                                'type' => 'string',
-                            ),
-                            'VersionId' => array(
-                                'type' => 'string',
-                            ),
-                            'DeleteMarker' => array(
-                                'type' => 'boolean',
-                            ),
-                            'DeleteMarkerVersionId' => array(
-                                'type' => 'string',
-                            ),
-                        ),
-                    ),
-                ),
-                'Errors' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'sentAs' => 'Error',
-                    'data' => array(
-                        'xmlFlattened' => true,
-                    ),
-                    'items' => array(
-                        'name' => 'Error',
-                        'type' => 'object',
-                        'sentAs' => 'Error',
-                        'properties' => array(
-                            'Key' => array(
-                                'type' => 'string',
-                            ),
-                            'VersionId' => array(
-                                'type' => 'string',
-                            ),
-                            'Code' => array(
-                                'type' => 'string',
-                            ),
-                            'Message' => array(
-                                'type' => 'string',
-                            ),
-                        ),
-                    ),
-                ),
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -2961,161 +1339,7 @@ return array (
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'GetBucketCorsOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'CORSRules' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'sentAs' => 'CORSRule',
-                    'data' => array(
-                        'xmlFlattened' => true,
-                    ),
-                    'items' => array(
-                        'name' => 'CORSRule',
-                        'type' => 'object',
-                        'sentAs' => 'CORSRule',
-                        'properties' => array(
-                            'AllowedHeaders' => array(
-                                'type' => 'array',
-                                'sentAs' => 'AllowedHeader',
-                                'data' => array(
-                                    'xmlFlattened' => true,
-                                ),
-                                'items' => array(
-                                    'name' => 'AllowedHeader',
-                                    'type' => 'string',
-                                    'sentAs' => 'AllowedHeader',
-                                ),
-                            ),
-                            'AllowedMethods' => array(
-                                'type' => 'array',
-                                'sentAs' => 'AllowedMethod',
-                                'data' => array(
-                                    'xmlFlattened' => true,
-                                ),
-                                'items' => array(
-                                    'name' => 'AllowedMethod',
-                                    'type' => 'string',
-                                    'sentAs' => 'AllowedMethod',
-                                ),
-                            ),
-                            'AllowedOrigins' => array(
-                                'type' => 'array',
-                                'sentAs' => 'AllowedOrigin',
-                                'data' => array(
-                                    'xmlFlattened' => true,
-                                ),
-                                'items' => array(
-                                    'name' => 'AllowedOrigin',
-                                    'type' => 'string',
-                                    'sentAs' => 'AllowedOrigin',
-                                ),
-                            ),
-                            'ExposeHeaders' => array(
-                                'type' => 'array',
-                                'sentAs' => 'ExposeHeader',
-                                'data' => array(
-                                    'xmlFlattened' => true,
-                                ),
-                                'items' => array(
-                                    'name' => 'ExposeHeader',
-                                    'type' => 'string',
-                                    'sentAs' => 'ExposeHeader',
-                                ),
-                            ),
-                            'MaxAgeSeconds' => array(
-                                'type' => 'numeric',
-                            ),
-                        ),
-                    ),
-                ),
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'GetBucketLifecycleOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'Rules' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'sentAs' => 'Rule',
-                    'data' => array(
-                        'xmlFlattened' => true,
-                    ),
-                    'items' => array(
-                        'name' => 'Rule',
-                        'type' => 'object',
-                        'sentAs' => 'Rule',
-                        'properties' => array(
-                            'Expiration' => array(
-                                'type' => 'object',
-                                'properties' => array(
-                                    'Date' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'Days' => array(
-                                        'type' => 'numeric',
-                                    ),
-                                ),
-                            ),
-                            'ID' => array(
-                                'type' => 'string',
-                            ),
-                            'Prefix' => array(
-                                'type' => 'string',
-                            ),
-                            'Status' => array(
-                                'type' => 'string',
-                            ),
-                            'Transition' => array(
-                                'type' => 'object',
-                                'properties' => array(
-                                    'Date' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'Days' => array(
-                                        'type' => 'numeric',
-                                    ),
-                                    'StorageClass' => array(
-                                        'type' => 'string',
-                                    ),
-                                ),
-                            ),
-                            'NoncurrentVersionTransition' => array(
-                                'type' => 'object',
-                                'properties' => array(
-                                    'NoncurrentDays' => array(
-                                        'type' => 'numeric',
-                                    ),
-                                    'StorageClass' => array(
-                                        'type' => 'string',
-                                    ),
-                                ),
-                            ),
-                            'NoncurrentVersionExpiration' => array(
-                                'type' => 'object',
-                                'properties' => array(
-                                    'NoncurrentDays' => array(
-                                        'type' => 'numeric',
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -3123,7 +1347,7 @@ return array (
             'type' => 'object',
             'additionalProperties' => true,
             'properties' => array(
-                'Location' => array(
+                'LocationConstraint' => array(
                     'type' => 'string',
                     'location' => 'body',
                     'filters' => array(
@@ -3190,85 +1414,7 @@ return array (
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'GetBucketNotificationOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'TopicConfiguration' => array(
-                    'type' => 'object',
-                    'location' => 'xml',
-                    'properties' => array(
-                        'Event' => array(
-                            'type' => 'string',
-                        ),
-                        'Topic' => array(
-                            'type' => 'string',
-                        ),
-                    ),
-                ),
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'GetBucketPolicyOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'Policy' => array(
-                    'type' => 'string',
-                    'instanceOf' => 'Guzzle\\Http\\EntityBody',
-                    'location' => 'body',
-                ),
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'GetBucketRequestPaymentOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'Payer' => array(
-                    'type' => 'string',
-                    'location' => 'xml',
-                ),
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'GetBucketTaggingOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'TagSet' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'items' => array(
-                        'name' => 'Tag',
-                        'type' => 'object',
-                        'sentAs' => 'Tag',
-                        'properties' => array(
-                            'Key' => array(
-                                'type' => 'string',
-                            ),
-                            'Value' => array(
-                                'type' => 'string',
-                            ),
-                        ),
-                    ),
-                ),
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -3287,89 +1433,7 @@ return array (
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'GetBucketWebsiteOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RedirectAllRequestsTo' => array(
-                    'type' => 'object',
-                    'location' => 'xml',
-                    'properties' => array(
-                        'HostName' => array(
-                            'type' => 'string',
-                        ),
-                        'Protocol' => array(
-                            'type' => 'string',
-                        ),
-                    ),
-                ),
-                'IndexDocument' => array(
-                    'type' => 'object',
-                    'location' => 'xml',
-                    'properties' => array(
-                        'Suffix' => array(
-                            'type' => 'string',
-                        ),
-                    ),
-                ),
-                'ErrorDocument' => array(
-                    'type' => 'object',
-                    'location' => 'xml',
-                    'properties' => array(
-                        'Key' => array(
-                            'type' => 'string',
-                        ),
-                    ),
-                ),
-                'RoutingRules' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'items' => array(
-                        'name' => 'RoutingRule',
-                        'type' => 'object',
-                        'sentAs' => 'RoutingRule',
-                        'properties' => array(
-                            'Condition' => array(
-                                'type' => 'object',
-                                'properties' => array(
-                                    'HttpErrorCodeReturnedEquals' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'KeyPrefixEquals' => array(
-                                        'type' => 'string',
-                                    ),
-                                ),
-                            ),
-                            'Redirect' => array(
-                                'type' => 'object',
-                                'properties' => array(
-                                    'HostName' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'HttpRedirectCode' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'Protocol' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'ReplaceKeyPrefixWith' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'ReplaceKeyWith' => array(
-                                        'type' => 'string',
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -3385,7 +1449,7 @@ return array (
                 'DeleteMarker' => array(
                     'type' => 'boolean',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-delete-marker',
+                    'sentAs' => 'x-nifty-delete-marker',
                 ),
                 'AcceptRanges' => array(
                     'type' => 'string',
@@ -3395,12 +1459,12 @@ return array (
                 'Expiration' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-expiration',
+                    'sentAs' => 'x-nifty-expiration',
                 ),
                 'Restore' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-restore',
+                    'sentAs' => 'x-nifty-restore',
                 ),
                 'LastModified' => array(
                     'type' => 'string',
@@ -3419,12 +1483,12 @@ return array (
                 'MissingMeta' => array(
                     'type' => 'numeric',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-missing-meta',
+                    'sentAs' => 'x-nifty-missing-meta',
                 ),
                 'VersionId' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-version-id',
+                    'sentAs' => 'x-nifty-version-id',
                 ),
                 'CacheControl' => array(
                     'type' => 'string',
@@ -3458,17 +1522,17 @@ return array (
                 'WebsiteRedirectLocation' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-website-redirect-location',
+                    'sentAs' => 'x-nifty-website-redirect-location',
                 ),
                 'ServerSideEncryption' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption',
+                    'sentAs' => 'x-nifty-server-side-encryption',
                 ),
                 'Metadata' => array(
                     'type' => 'object',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-meta-',
+                    'sentAs' => 'x-nifty-meta-',
                     'additionalProperties' => array(
                         'type' => 'string',
                     ),
@@ -3476,16 +1540,16 @@ return array (
                 'SSECustomerAlgorithm' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
+                    'sentAs' => 'x-nifty-server-side-encryption-customer-algorithm',
                 ),
                 'SSECustomerKeyMD5' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
+                    'sentAs' => 'x-nifty-server-side-encryption-customer-key-MD5',
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -3547,32 +1611,7 @@ return array (
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'GetObjectTorrentOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'Body' => array(
-                    'type' => 'string',
-                    'instanceOf' => 'Guzzle\\Http\\EntityBody',
-                    'location' => 'body',
-                ),
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'HeadBucketOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -3583,7 +1622,7 @@ return array (
                 'DeleteMarker' => array(
                     'type' => 'boolean',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-delete-marker',
+                    'sentAs' => 'x-nifty-delete-marker',
                 ),
                 'AcceptRanges' => array(
                     'type' => 'string',
@@ -3593,12 +1632,12 @@ return array (
                 'Expiration' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-expiration',
+                    'sentAs' => 'x-nifty-expiration',
                 ),
                 'Restore' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-restore',
+                    'sentAs' => 'x-nifty-restore',
                 ),
                 'LastModified' => array(
                     'type' => 'string',
@@ -3617,12 +1656,12 @@ return array (
                 'MissingMeta' => array(
                     'type' => 'numeric',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-missing-meta',
+                    'sentAs' => 'x-nifty-missing-meta',
                 ),
                 'VersionId' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-version-id',
+                    'sentAs' => 'x-nifty-version-id',
                 ),
                 'CacheControl' => array(
                     'type' => 'string',
@@ -3656,17 +1695,17 @@ return array (
                 'WebsiteRedirectLocation' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-website-redirect-location',
+                    'sentAs' => 'x-nifty-website-redirect-location',
                 ),
                 'ServerSideEncryption' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption',
+                    'sentAs' => 'x-nifty-server-side-encryption',
                 ),
                 'Metadata' => array(
                     'type' => 'object',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-meta-',
+                    'sentAs' => 'x-nifty-meta-',
                     'additionalProperties' => array(
                         'type' => 'string',
                     ),
@@ -3674,16 +1713,16 @@ return array (
                 'SSECustomerAlgorithm' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
+                    'sentAs' => 'x-nifty-server-side-encryption-customer-algorithm',
                 ),
                 'SSECustomerKeyMD5' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
+                    'sentAs' => 'x-nifty-server-side-encryption-customer-key-MD5',
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -3722,7 +1761,7 @@ return array (
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -3833,7 +1872,7 @@ return array (
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -3980,7 +2019,7 @@ return array (
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -4073,7 +2112,7 @@ return array (
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -4166,7 +2205,7 @@ return array (
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -4176,27 +2215,7 @@ return array (
             'properties' => array(
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'PutBucketCorsOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'PutBucketLifecycleOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -4206,47 +2225,7 @@ return array (
             'properties' => array(
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'PutBucketNotificationOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'PutBucketPolicyOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'PutBucketRequestPaymentOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'PutBucketTaggingOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -4256,17 +2235,7 @@ return array (
             'properties' => array(
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'PutBucketWebsiteOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -4277,7 +2246,7 @@ return array (
                 'Expiration' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-expiration',
+                    'sentAs' => 'x-nifty-expiration',
                 ),
                 'ETag' => array(
                     'type' => 'string',
@@ -4286,26 +2255,26 @@ return array (
                 'ServerSideEncryption' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption',
+                    'sentAs' => 'x-nifty-server-side-encryption',
                 ),
                 'VersionId' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-version-id',
+                    'sentAs' => 'x-nifty-version-id',
                 ),
                 'SSECustomerAlgorithm' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
+                    'sentAs' => 'x-nifty-server-side-encryption-customer-algorithm',
                 ),
                 'SSECustomerKeyMD5' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
+                    'sentAs' => 'x-nifty-server-side-encryption-customer-key-MD5',
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
                 'ObjectURL' => array(
                 ),
@@ -4317,17 +2286,7 @@ return array (
             'properties' => array(
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'RestoreObjectOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),
@@ -4338,7 +2297,7 @@ return array (
                 'ServerSideEncryption' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption',
+                    'sentAs' => 'x-nifty-server-side-encryption',
                 ),
                 'ETag' => array(
                     'type' => 'string',
@@ -4347,54 +2306,16 @@ return array (
                 'SSECustomerAlgorithm' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
+                    'sentAs' => 'x-nifty-server-side-encryption-customer-algorithm',
                 ),
                 'SSECustomerKeyMD5' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
+                    'sentAs' => 'x-nifty-server-side-encryption-customer-key-MD5',
                 ),
                 'RequestId' => array(
                     'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
-                ),
-            ),
-        ),
-        'UploadPartCopyOutput' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'CopySourceVersionId' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-copy-source-version-id',
-                ),
-                'ETag' => array(
-                    'type' => 'string',
-                    'location' => 'xml',
-                ),
-                'LastModified' => array(
-                    'type' => 'string',
-                    'location' => 'xml',
-                ),
-                'ServerSideEncryption' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption',
-                ),
-                'SSECustomerAlgorithm' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
-                ),
-                'SSECustomerKeyMD5' => array(
-                    'type' => 'string',
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
-                ),
-                'RequestId' => array(
-                    'location' => 'header',
-                    'sentAs' => 'x-amz-request-id',
+                    'sentAs' => 'x-nifty-request-id',
                 ),
             ),
         ),

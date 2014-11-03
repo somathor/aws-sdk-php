@@ -14,6 +14,9 @@ return array(
         '*/rdb' => array(
             'endpoint' => '{service}.jp-{region}.api.cloud.nifty.com'
         ),
+        '*/mq' => array(
+            'endpoint' => '{service}.jp-{region}.api.cloud.nifty.com'
+        ),
         '*/ess' => array(
             'endpoint' => 'ess.api.cloud.nifty.com'
         ),

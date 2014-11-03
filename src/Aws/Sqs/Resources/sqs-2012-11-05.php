@@ -15,64 +15,29 @@
  */
 
 return array (
-    'apiVersion' => '2012-11-05',
-    'endpointPrefix' => 'sqs',
-    'serviceFullName' => 'Amazon Simple Queue Service',
-    'serviceAbbreviation' => 'Amazon SQS',
+    'apiVersion' => '2013-05-15N2013-12-16',
+    'endpointPrefix' => 'mq',
+    'serviceFullName' => 'NIFTY Cloud MQ',
+    'serviceAbbreviation' => 'MQ',
     'serviceType' => 'query',
     'resultWrapped' => true,
-    'signatureVersion' => 'v4',
+    'signatureVersion' => 'v2',
     'namespace' => 'Sqs',
     'regions' => array(
-        'us-east-1' => array(
+        'east-1' => array(
             'http' => true,
             'https' => true,
-            'hostname' => 'sqs.us-east-1.amazonaws.com',
+            'hostname' => 'mq.jp-east-1.api.cloud.nifty.com',
         ),
-        'us-west-1' => array(
+        'east-2' => array(
             'http' => true,
             'https' => true,
-            'hostname' => 'sqs.us-west-1.amazonaws.com',
+            'hostname' => 'mq.jp-east-2.api.cloud.nifty.com',
         ),
-        'us-west-2' => array(
+        'west-1' => array(
             'http' => true,
             'https' => true,
-            'hostname' => 'sqs.us-west-2.amazonaws.com',
-        ),
-        'eu-west-1' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 'sqs.eu-west-1.amazonaws.com',
-        ),
-        'ap-northeast-1' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 'sqs.ap-northeast-1.amazonaws.com',
-        ),
-        'ap-southeast-1' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 'sqs.ap-southeast-1.amazonaws.com',
-        ),
-        'ap-southeast-2' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 'sqs.ap-southeast-2.amazonaws.com',
-        ),
-        'sa-east-1' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 'sqs.sa-east-1.amazonaws.com',
-        ),
-        'cn-north-1' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 'sqs.cn-north-1.amazonaws.com.cn',
-        ),
-        'us-gov-west-1' => array(
-            'http' => true,
-            'https' => true,
-            'hostname' => 'sqs.us-gov-west-1.amazonaws.com',
+            'hostname' => 'mq.jp-west-1.api.cloud.nifty.com',
         ),
     ),
     'operations' => array(
@@ -87,11 +52,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'AddPermission',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
                 ),
                 'QueueUrl' => array(
                     'required' => true,
@@ -143,11 +103,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'ChangeMessageVisibility',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
-                ),
                 'QueueUrl' => array(
                     'required' => true,
                     'type' => 'string',
@@ -186,11 +141,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'ChangeMessageVisibilityBatch',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
                 ),
                 'QueueUrl' => array(
                     'required' => true,
@@ -252,11 +202,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'CreateQueue',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
-                ),
                 'QueueName' => array(
                     'required' => true,
                     'type' => 'string',
@@ -301,11 +246,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'DeleteMessage',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
-                ),
                 'QueueUrl' => array(
                     'required' => true,
                     'type' => 'string',
@@ -339,11 +279,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'DeleteMessageBatch',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
                 ),
                 'QueueUrl' => array(
                     'required' => true,
@@ -402,11 +337,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'DeleteQueue',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
-                ),
                 'QueueUrl' => array(
                     'required' => true,
                     'type' => 'string',
@@ -425,11 +355,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'GetQueueAttributes',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
                 ),
                 'QueueUrl' => array(
                     'required' => true,
@@ -465,47 +390,12 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'GetQueueUrl',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
-                ),
                 'QueueName' => array(
                     'required' => true,
                     'type' => 'string',
                     'location' => 'aws.query',
                 ),
                 'QueueOwnerAWSAccountId' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'The queue referred to does not exist.',
-                    'class' => 'QueueDoesNotExistException',
-                ),
-            ),
-        ),
-        'ListDeadLetterSourceQueues' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'ListDeadLetterSourceQueuesResult',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'ListDeadLetterSourceQueues',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
-                ),
-                'QueueUrl' => array(
-                    'required' => true,
                     'type' => 'string',
                     'location' => 'aws.query',
                 ),
@@ -529,11 +419,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'ListQueues',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
-                ),
                 'QueueNamePrefix' => array(
                     'type' => 'string',
                     'location' => 'aws.query',
@@ -551,11 +436,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'ReceiveMessage',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
                 ),
                 'QueueUrl' => array(
                     'required' => true,
@@ -612,11 +492,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'RemovePermission',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
-                ),
                 'QueueUrl' => array(
                     'required' => true,
                     'type' => 'string',
@@ -640,11 +515,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'SendMessage',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
                 ),
                 'QueueUrl' => array(
                     'required' => true,
@@ -726,11 +596,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'SendMessageBatch',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
                 ),
                 'QueueUrl' => array(
                     'required' => true,
@@ -841,11 +706,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'SetQueueAttributes',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2012-11-05',
                 ),
                 'QueueUrl' => array(
                     'required' => true,
@@ -1056,25 +916,6 @@ return array (
                 'QueueUrl' => array(
                     'type' => 'string',
                     'location' => 'xml',
-                ),
-            ),
-        ),
-        'ListDeadLetterSourceQueuesResult' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'queueUrls' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'sentAs' => 'QueueUrl',
-                    'data' => array(
-                        'xmlFlattened' => true,
-                    ),
-                    'items' => array(
-                        'name' => 'QueueUrl',
-                        'type' => 'string',
-                        'sentAs' => 'QueueUrl',
-                    ),
                 ),
             ),
         ),

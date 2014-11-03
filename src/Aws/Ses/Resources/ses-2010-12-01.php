@@ -15,29 +15,29 @@
  */
 
 return array (
-    'apiVersion' => '2010-12-01',
-    'endpointPrefix' => 'email',
-    'serviceFullName' => 'Amazon Simple Email Service',
-    'serviceAbbreviation' => 'Amazon SES',
+    'apiVersion' => '2010-12-01N2014-05-28',
+    'endpointPrefix' => 'ess',
+    'serviceFullName' => 'NIFTY Cloud ESS',
+    'serviceAbbreviation' => 'NIFTY Cloud ESS',
     'serviceType' => 'query',
     'resultWrapped' => true,
-    'signatureVersion' => 'v4',
+    'signatureVersion' => 'v3https',
     'namespace' => 'Ses',
     'regions' => array(
-        'us-east-1' => array(
+        'east-1' => array(
             'http' => false,
             'https' => true,
-            'hostname' => 'email.us-east-1.amazonaws.com',
+            'hostname' => 'ess.api.cloud.nifty.com',
         ),
-        'us-west-2' => array(
+        'east-2' => array(
             'http' => false,
             'https' => true,
-            'hostname' => 'email.us-west-2.amazonaws.com',
+            'hostname' => 'ess.api.cloud.nifty.com',
         ),
-        'eu-west-1' => array(
+        'west-1' => array(
             'http' => false,
             'https' => true,
-            'hostname' => 'email.eu-west-1.amazonaws.com',
+            'hostname' => 'ess.api.cloud.nifty.com',
         ),
     ),
     'operations' => array(
@@ -65,31 +65,6 @@ return array (
                 ),
             ),
         ),
-        'DeleteVerifiedEmailAddress' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'EmptyOutput',
-            'responseType' => 'model',
-            'deprecated' => true,
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'DeleteVerifiedEmailAddress',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2010-12-01',
-                ),
-                'EmailAddress' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-            ),
-        ),
         'GetIdentityDkimAttributes' => array(
             'httpMethod' => 'POST',
             'uri' => '/',
@@ -101,35 +76,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'GetIdentityDkimAttributes',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2010-12-01',
-                ),
-                'Identities' => array(
-                    'required' => true,
-                    'type' => 'array',
-                    'location' => 'aws.query',
-                    'sentAs' => 'Identities.member',
-                    'items' => array(
-                        'name' => 'Identity',
-                        'type' => 'string',
-                    ),
-                ),
-            ),
-        ),
-        'GetIdentityNotificationAttributes' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'GetIdentityNotificationAttributesResponse',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'GetIdentityNotificationAttributes',
                 ),
                 'Version' => array(
                     'static' => true,
@@ -243,26 +189,6 @@ return array (
                 'MaxItems' => array(
                     'type' => 'numeric',
                     'location' => 'aws.query',
-                ),
-            ),
-        ),
-        'ListVerifiedEmailAddresses' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'ListVerifiedEmailAddressesResponse',
-            'responseType' => 'model',
-            'deprecated' => true,
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'ListVerifiedEmailAddresses',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2010-12-01',
                 ),
             ),
         ),
@@ -469,69 +395,6 @@ return array (
                 ),
             ),
         ),
-        'SetIdentityFeedbackForwardingEnabled' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'EmptyOutput',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'SetIdentityFeedbackForwardingEnabled',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2010-12-01',
-                ),
-                'Identity' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'ForwardingEnabled' => array(
-                    'required' => true,
-                    'type' => 'boolean',
-                    'format' => 'boolean-string',
-                    'location' => 'aws.query',
-                ),
-            ),
-        ),
-        'SetIdentityNotificationTopic' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'EmptyOutput',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'SetIdentityNotificationTopic',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2010-12-01',
-                ),
-                'Identity' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'NotificationType' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'SnsTopic' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-            ),
-        ),
         'VerifyDomainDkim' => array(
             'httpMethod' => 'POST',
             'uri' => '/',
@@ -574,31 +437,6 @@ return array (
                     'default' => '2010-12-01',
                 ),
                 'Domain' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-            ),
-        ),
-        'VerifyEmailAddress' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'EmptyOutput',
-            'responseType' => 'model',
-            'deprecated' => true,
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'VerifyEmailAddress',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2010-12-01',
-                ),
-                'EmailAddress' => array(
                     'required' => true,
                     'type' => 'string',
                     'location' => 'aws.query',
@@ -678,56 +516,6 @@ return array (
                                             'type' => 'string',
                                             'sentAs' => 'member',
                                         ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                    'additionalProperties' => false,
-                ),
-            ),
-        ),
-        'GetIdentityNotificationAttributesResponse' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'NotificationAttributes' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'filters' => array(
-                        array(
-                            'method' => 'Aws\\Common\\Command\\XmlResponseLocationVisitor::xmlMap',
-                            'args' => array(
-                                '@value',
-                                'entry',
-                                'key',
-                                'value',
-                            ),
-                        ),
-                    ),
-                    'items' => array(
-                        'name' => 'entry',
-                        'type' => 'object',
-                        'sentAs' => 'entry',
-                        'additionalProperties' => true,
-                        'properties' => array(
-                            'key' => array(
-                                'type' => 'string',
-                            ),
-                            'value' => array(
-                                'type' => 'object',
-                                'properties' => array(
-                                    'BounceTopic' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'ComplaintTopic' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'DeliveryTopic' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'ForwardingEnabled' => array(
-                                        'type' => 'boolean',
                                     ),
                                 ),
                             ),
@@ -850,21 +638,6 @@ return array (
                 ),
             ),
         ),
-        'ListVerifiedEmailAddressesResponse' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'VerifiedEmailAddresses' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'items' => array(
-                        'name' => 'Address',
-                        'type' => 'string',
-                        'sentAs' => 'member',
-                    ),
-                ),
-            ),
-        ),
         'SendEmailResponse' => array(
             'type' => 'object',
             'additionalProperties' => true,
@@ -917,9 +690,6 @@ return array (
             'output_token' => 'NextToken',
             'limit_key' => 'MaxItems',
             'result_key' => 'Identities',
-        ),
-        'ListVerifiedEmailAddresses' => array(
-            'result_key' => 'VerifiedEmailAddresses',
         ),
     ),
     'waiters' => array(

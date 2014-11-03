@@ -11,6 +11,9 @@ return array(
         'west-1/s3' => array(
             'endpoint' => 'west-1-ncss.nifty.com'
         ),
+        '*/rdb' => array(
+            'endpoint' => '{service}.jp-{region}.api.cloud.nifty.com'
+        ),
         '*/ess' => array(
             'endpoint' => 'ess.api.cloud.nifty.com'
         ),

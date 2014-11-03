@@ -15,64 +15,29 @@
  */
 
 return array (
-    'apiVersion' => '2014-09-01',
-    'endpointPrefix' => 'rds',
-    'serviceFullName' => 'Amazon Relational Database Service',
-    'serviceAbbreviation' => 'Amazon RDS',
+    'apiVersion' => '2013-05-15N2013-12-16',
+    'endpointPrefix' => 'rdb',
+    'serviceFullName' => 'NIFTY Cloud RDB',
+    'serviceAbbreviation' => 'RDB',
     'serviceType' => 'query',
     'resultWrapped' => true,
-    'signatureVersion' => 'v4',
+    'signatureVersion' => 'v2',
     'namespace' => 'Rds',
     'regions' => array(
-        'us-east-1' => array(
+        'east-1' => array(
             'http' => false,
             'https' => true,
-            'hostname' => 'rds.us-east-1.amazonaws.com',
+            'hostname' => 'rdb.jp-east-1.api.cloud.nifty.com',
         ),
-        'us-west-1' => array(
+        'east-2' => array(
             'http' => false,
             'https' => true,
-            'hostname' => 'rds.us-west-1.amazonaws.com',
+            'hostname' => 'rdb.jp-east-2.api.cloud.nifty.com',
         ),
-        'us-west-2' => array(
+        'west-1' => array(
             'http' => false,
             'https' => true,
-            'hostname' => 'rds.us-west-2.amazonaws.com',
-        ),
-        'eu-west-1' => array(
-            'http' => false,
-            'https' => true,
-            'hostname' => 'rds.eu-west-1.amazonaws.com',
-        ),
-        'ap-northeast-1' => array(
-            'http' => false,
-            'https' => true,
-            'hostname' => 'rds.ap-northeast-1.amazonaws.com',
-        ),
-        'ap-southeast-1' => array(
-            'http' => false,
-            'https' => true,
-            'hostname' => 'rds.ap-southeast-1.amazonaws.com',
-        ),
-        'ap-southeast-2' => array(
-            'http' => false,
-            'https' => true,
-            'hostname' => 'rds.ap-southeast-2.amazonaws.com',
-        ),
-        'sa-east-1' => array(
-            'http' => false,
-            'https' => true,
-            'hostname' => 'rds.sa-east-1.amazonaws.com',
-        ),
-        'cn-north-1' => array(
-            'http' => false,
-            'https' => true,
-            'hostname' => 'rds.cn-north-1.amazonaws.com.cn',
-        ),
-        'us-gov-west-1' => array(
-            'http' => false,
-            'https' => true,
-            'hostname' => 'rds.us-gov-west-1.amazonaws.com',
+            'hostname' => 'rdb.jp-west-1.api.cloud.nifty.com',
         ),
     ),
     'operations' => array(
@@ -87,11 +52,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'AddSourceIdentifierToSubscription',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'SubscriptionName' => array(
                     'required' => true,
@@ -115,58 +75,6 @@ return array (
                 ),
             ),
         ),
-        'AddTagsToResource' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'EmptyOutput',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'AddTagsToResource',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
-                'ResourceName' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'Tags' => array(
-                    'required' => true,
-                    'type' => 'array',
-                    'location' => 'aws.query',
-                    'sentAs' => 'Tags.member',
-                    'items' => array(
-                        'name' => 'Tag',
-                        'type' => 'object',
-                        'properties' => array(
-                            'Key' => array(
-                                'type' => 'string',
-                            ),
-                            'Value' => array(
-                                'type' => 'string',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'DBInstanceIdentifier does not refer to an existing DB instance.',
-                    'class' => 'DBInstanceNotFoundException',
-                ),
-                array(
-                    'reason' => 'DBSnapshotIdentifier does not refer to an existing DB snapshot.',
-                    'class' => 'DBSnapshotNotFoundException',
-                ),
-            ),
-        ),
         'AuthorizeDBSecurityGroupIngress' => array(
             'httpMethod' => 'POST',
             'uri' => '/',
@@ -178,11 +86,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'AuthorizeDBSecurityGroupIngress',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'DBSecurityGroupName' => array(
                     'required' => true,
@@ -236,11 +139,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'CopyDBParameterGroup',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'SourceDBParameterGroupIdentifier' => array(
                     'required' => true,
@@ -302,11 +200,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'CopyDBSnapshot',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'SourceDBSnapshotIdentifier' => array(
                     'required' => true,
                     'type' => 'string',
@@ -365,11 +258,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'CopyOptionGroup',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'SourceOptionGroupIdentifier' => array(
                     'required' => true,
@@ -430,11 +318,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'CreateDBInstance',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'DBName' => array(
                     'type' => 'string',
@@ -652,11 +535,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'CreateDBInstanceReadReplica',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'DBInstanceIdentifier' => array(
                     'required' => true,
                     'type' => 'string',
@@ -806,11 +684,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'CreateDBParameterGroup',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'DBParameterGroupName' => array(
                     'required' => true,
                     'type' => 'string',
@@ -867,11 +740,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'CreateDBSecurityGroup',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'DBSecurityGroupName' => array(
                     'required' => true,
                     'type' => 'string',
@@ -927,11 +795,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'CreateDBSnapshot',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'DBSnapshotIdentifier' => array(
                     'required' => true,
                     'type' => 'string',
@@ -979,84 +842,6 @@ return array (
                 ),
             ),
         ),
-        'CreateDBSubnetGroup' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'DBSubnetGroupWrapper',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'CreateDBSubnetGroup',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
-                'DBSubnetGroupName' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'DBSubnetGroupDescription' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'SubnetIds' => array(
-                    'required' => true,
-                    'type' => 'array',
-                    'location' => 'aws.query',
-                    'sentAs' => 'SubnetIds.member',
-                    'items' => array(
-                        'name' => 'SubnetIdentifier',
-                        'type' => 'string',
-                    ),
-                ),
-                'Tags' => array(
-                    'type' => 'array',
-                    'location' => 'aws.query',
-                    'sentAs' => 'Tags.member',
-                    'items' => array(
-                        'name' => 'Tag',
-                        'type' => 'object',
-                        'properties' => array(
-                            'Key' => array(
-                                'type' => 'string',
-                            ),
-                            'Value' => array(
-                                'type' => 'string',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'DBSubnetGroupName is already used by an existing DB subnet group.',
-                    'class' => 'DBSubnetGroupAlreadyExistsException',
-                ),
-                array(
-                    'reason' => 'Request would result in user exceeding the allowed number of DB subnet groups.',
-                    'class' => 'DBSubnetGroupQuotaExceededException',
-                ),
-                array(
-                    'reason' => 'Request would result in user exceeding the allowed number of subnets in a DB subnet groups.',
-                    'class' => 'DBSubnetQuotaExceededException',
-                ),
-                array(
-                    'reason' => 'Subnets in the DB subnet group should cover at least two Availability Zones unless there is only one Availability Zone.',
-                    'class' => 'DBSubnetGroupDoesNotCoverEnoughAZsException',
-                ),
-                array(
-                    'reason' => 'The requested subnet is invalid, or multiple subnets were requested that are not all in a common VPC.',
-                    'class' => 'InvalidSubnetException',
-                ),
-            ),
-        ),
         'CreateEventSubscription' => array(
             'httpMethod' => 'POST',
             'uri' => '/',
@@ -1068,11 +853,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'CreateEventSubscription',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'SubscriptionName' => array(
                     'required' => true,
@@ -1172,11 +952,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'CreateOptionGroup',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'OptionGroupName' => array(
                     'required' => true,
                     'type' => 'string',
@@ -1238,11 +1013,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'DeleteDBInstance',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'DBInstanceIdentifier' => array(
                     'required' => true,
                     'type' => 'string',
@@ -1289,11 +1059,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'DeleteDBParameterGroup',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'DBParameterGroupName' => array(
                     'required' => true,
                     'type' => 'string',
@@ -1322,11 +1087,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'DeleteDBSecurityGroup',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'DBSecurityGroupName' => array(
                     'required' => true,
@@ -1357,11 +1117,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'DeleteDBSnapshot',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'DBSnapshotIdentifier' => array(
                     'required' => true,
                     'type' => 'string',
@@ -1379,44 +1134,6 @@ return array (
                 ),
             ),
         ),
-        'DeleteDBSubnetGroup' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'EmptyOutput',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'DeleteDBSubnetGroup',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
-                'DBSubnetGroupName' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'The DB subnet group cannot be deleted because it is in use.',
-                    'class' => 'InvalidDBSubnetGroupStateException',
-                ),
-                array(
-                    'reason' => 'The DB subnet is not in the available state.',
-                    'class' => 'InvalidDBSubnetStateException',
-                ),
-                array(
-                    'reason' => 'DBSubnetGroupName does not refer to an existing DB subnet group.',
-                    'class' => 'DBSubnetGroupNotFoundException',
-                ),
-            ),
-        ),
         'DeleteEventSubscription' => array(
             'httpMethod' => 'POST',
             'uri' => '/',
@@ -1428,11 +1145,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'DeleteEventSubscription',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'SubscriptionName' => array(
                     'required' => true,
@@ -1463,11 +1175,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'DeleteOptionGroup',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'OptionGroupName' => array(
                     'required' => true,
                     'type' => 'string',
@@ -1496,11 +1203,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'DescribeDBEngineVersions',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'Engine' => array(
                     'type' => 'string',
@@ -1570,11 +1272,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'DescribeDBInstances',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'DBInstanceIdentifier' => array(
                     'type' => 'string',
                     'location' => 'aws.query',
@@ -1630,11 +1327,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'DescribeDBLogFiles',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'DBInstanceIdentifier' => array(
                     'required' => true,
@@ -1705,11 +1397,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'DescribeDBParameterGroups',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'DBParameterGroupName' => array(
                     'type' => 'string',
                     'location' => 'aws.query',
@@ -1765,11 +1452,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'DescribeDBParameters',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'DBParameterGroupName' => array(
                     'required' => true,
@@ -1832,11 +1514,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'DescribeDBSecurityGroups',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'DBSecurityGroupName' => array(
                     'type' => 'string',
                     'location' => 'aws.query',
@@ -1893,11 +1570,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'DescribeDBSnapshots',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'DBInstanceIdentifier' => array(
                     'type' => 'string',
                     'location' => 'aws.query',
@@ -1950,67 +1622,6 @@ return array (
                 ),
             ),
         ),
-        'DescribeDBSubnetGroups' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'DBSubnetGroupMessage',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'DescribeDBSubnetGroups',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
-                'DBSubnetGroupName' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'Filters' => array(
-                    'type' => 'array',
-                    'location' => 'aws.query',
-                    'sentAs' => 'Filters.member',
-                    'items' => array(
-                        'name' => 'Filter',
-                        'type' => 'object',
-                        'properties' => array(
-                            'Name' => array(
-                                'required' => true,
-                                'type' => 'string',
-                            ),
-                            'Values' => array(
-                                'required' => true,
-                                'type' => 'array',
-                                'sentAs' => 'Values.member',
-                                'items' => array(
-                                    'name' => 'Value',
-                                    'type' => 'string',
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-                'MaxRecords' => array(
-                    'type' => 'numeric',
-                    'location' => 'aws.query',
-                ),
-                'Marker' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'DBSubnetGroupName does not refer to an existing DB subnet group.',
-                    'class' => 'DBSubnetGroupNotFoundException',
-                ),
-            ),
-        ),
         'DescribeEngineDefaultParameters' => array(
             'httpMethod' => 'POST',
             'uri' => '/',
@@ -2022,11 +1633,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'DescribeEngineDefaultParameters',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'DBParameterGroupFamily' => array(
                     'required' => true,
@@ -2079,11 +1685,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'DescribeEventCategories',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'SourceType' => array(
                     'type' => 'string',
                     'location' => 'aws.query',
@@ -2125,11 +1726,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'DescribeEventSubscriptions',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'SubscriptionName' => array(
                     'type' => 'string',
@@ -2186,11 +1782,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'DescribeEvents',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'SourceIdentifier' => array(
                     'type' => 'string',
@@ -2277,11 +1868,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'DescribeOptionGroupOptions',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'EngineName' => array(
                     'required' => true,
                     'type' => 'string',
@@ -2336,11 +1922,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'DescribeOptionGroups',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'OptionGroupName' => array(
                     'type' => 'string',
@@ -2406,11 +1987,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'DescribeOrderableDBInstanceOptions',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'Engine' => array(
                     'required' => true,
                     'type' => 'string',
@@ -2467,174 +2043,6 @@ return array (
                 ),
             ),
         ),
-        'DescribeReservedDBInstances' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'ReservedDBInstanceMessage',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'DescribeReservedDBInstances',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
-                'ReservedDBInstanceId' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'ReservedDBInstancesOfferingId' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'DBInstanceClass' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'Duration' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'ProductDescription' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'OfferingType' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'MultiAZ' => array(
-                    'type' => 'boolean',
-                    'format' => 'boolean-string',
-                    'location' => 'aws.query',
-                ),
-                'Filters' => array(
-                    'type' => 'array',
-                    'location' => 'aws.query',
-                    'sentAs' => 'Filters.member',
-                    'items' => array(
-                        'name' => 'Filter',
-                        'type' => 'object',
-                        'properties' => array(
-                            'Name' => array(
-                                'required' => true,
-                                'type' => 'string',
-                            ),
-                            'Values' => array(
-                                'required' => true,
-                                'type' => 'array',
-                                'sentAs' => 'Values.member',
-                                'items' => array(
-                                    'name' => 'Value',
-                                    'type' => 'string',
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-                'MaxRecords' => array(
-                    'type' => 'numeric',
-                    'location' => 'aws.query',
-                ),
-                'Marker' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'The specified reserved DB Instance not found.',
-                    'class' => 'ReservedDBInstanceNotFoundException',
-                ),
-            ),
-        ),
-        'DescribeReservedDBInstancesOfferings' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'ReservedDBInstancesOfferingMessage',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'DescribeReservedDBInstancesOfferings',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
-                'ReservedDBInstancesOfferingId' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'DBInstanceClass' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'Duration' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'ProductDescription' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'OfferingType' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'MultiAZ' => array(
-                    'type' => 'boolean',
-                    'format' => 'boolean-string',
-                    'location' => 'aws.query',
-                ),
-                'Filters' => array(
-                    'type' => 'array',
-                    'location' => 'aws.query',
-                    'sentAs' => 'Filters.member',
-                    'items' => array(
-                        'name' => 'Filter',
-                        'type' => 'object',
-                        'properties' => array(
-                            'Name' => array(
-                                'required' => true,
-                                'type' => 'string',
-                            ),
-                            'Values' => array(
-                                'required' => true,
-                                'type' => 'array',
-                                'sentAs' => 'Values.member',
-                                'items' => array(
-                                    'name' => 'Value',
-                                    'type' => 'string',
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-                'MaxRecords' => array(
-                    'type' => 'numeric',
-                    'location' => 'aws.query',
-                ),
-                'Marker' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'Specified offering does not exist.',
-                    'class' => 'ReservedDBInstancesOfferingNotFoundException',
-                ),
-            ),
-        ),
         'DownloadDBLogFilePortion' => array(
             'httpMethod' => 'POST',
             'uri' => '/',
@@ -2646,11 +2054,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'DownloadDBLogFilePortion',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'DBInstanceIdentifier' => array(
                     'required' => true,
@@ -2678,64 +2081,6 @@ return array (
                 ),
             ),
         ),
-        'ListTagsForResource' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'TagListMessage',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'ListTagsForResource',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
-                'ResourceName' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'Filters' => array(
-                    'type' => 'array',
-                    'location' => 'aws.query',
-                    'sentAs' => 'Filters.member',
-                    'items' => array(
-                        'name' => 'Filter',
-                        'type' => 'object',
-                        'properties' => array(
-                            'Name' => array(
-                                'required' => true,
-                                'type' => 'string',
-                            ),
-                            'Values' => array(
-                                'required' => true,
-                                'type' => 'array',
-                                'sentAs' => 'Values.member',
-                                'items' => array(
-                                    'name' => 'Value',
-                                    'type' => 'string',
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'DBInstanceIdentifier does not refer to an existing DB instance.',
-                    'class' => 'DBInstanceNotFoundException',
-                ),
-                array(
-                    'reason' => 'DBSnapshotIdentifier does not refer to an existing DB snapshot.',
-                    'class' => 'DBSnapshotNotFoundException',
-                ),
-            ),
-        ),
         'ModifyDBInstance' => array(
             'httpMethod' => 'POST',
             'uri' => '/',
@@ -2747,11 +2092,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'ModifyDBInstance',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'DBInstanceIdentifier' => array(
                     'required' => true,
@@ -2924,11 +2264,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'ModifyDBParameterGroup',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'DBParameterGroupName' => array(
                     'required' => true,
                     'type' => 'string',
@@ -2989,66 +2324,6 @@ return array (
                 ),
             ),
         ),
-        'ModifyDBSubnetGroup' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'DBSubnetGroupWrapper',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'ModifyDBSubnetGroup',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
-                'DBSubnetGroupName' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'DBSubnetGroupDescription' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'SubnetIds' => array(
-                    'required' => true,
-                    'type' => 'array',
-                    'location' => 'aws.query',
-                    'sentAs' => 'SubnetIds.member',
-                    'items' => array(
-                        'name' => 'SubnetIdentifier',
-                        'type' => 'string',
-                    ),
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'DBSubnetGroupName does not refer to an existing DB subnet group.',
-                    'class' => 'DBSubnetGroupNotFoundException',
-                ),
-                array(
-                    'reason' => 'Request would result in user exceeding the allowed number of subnets in a DB subnet groups.',
-                    'class' => 'DBSubnetQuotaExceededException',
-                ),
-                array(
-                    'reason' => 'The DB subnet is already in use in the Availability Zone.',
-                    'class' => 'SubnetAlreadyInUseException',
-                ),
-                array(
-                    'reason' => 'Subnets in the DB subnet group should cover at least two Availability Zones unless there is only one Availability Zone.',
-                    'class' => 'DBSubnetGroupDoesNotCoverEnoughAZsException',
-                ),
-                array(
-                    'reason' => 'The requested subnet is invalid, or multiple subnets were requested that are not all in a common VPC.',
-                    'class' => 'InvalidSubnetException',
-                ),
-            ),
-        ),
         'ModifyEventSubscription' => array(
             'httpMethod' => 'POST',
             'uri' => '/',
@@ -3060,11 +2335,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'ModifyEventSubscription',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'SubscriptionName' => array(
                     'required' => true,
@@ -3132,11 +2402,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'ModifyOptionGroup',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'OptionGroupName' => array(
                     'required' => true,
@@ -3242,111 +2507,6 @@ return array (
                 ),
             ),
         ),
-        'PromoteReadReplica' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'DBInstanceWrapper',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'PromoteReadReplica',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
-                'DBInstanceIdentifier' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'BackupRetentionPeriod' => array(
-                    'type' => 'numeric',
-                    'location' => 'aws.query',
-                ),
-                'PreferredBackupWindow' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'The specified DB instance is not in the available state.',
-                    'class' => 'InvalidDBInstanceStateException',
-                ),
-                array(
-                    'reason' => 'DBInstanceIdentifier does not refer to an existing DB instance.',
-                    'class' => 'DBInstanceNotFoundException',
-                ),
-            ),
-        ),
-        'PurchaseReservedDBInstancesOffering' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'ReservedDBInstanceWrapper',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'PurchaseReservedDBInstancesOffering',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
-                'ReservedDBInstancesOfferingId' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'ReservedDBInstanceId' => array(
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'DBInstanceCount' => array(
-                    'type' => 'numeric',
-                    'location' => 'aws.query',
-                ),
-                'Tags' => array(
-                    'type' => 'array',
-                    'location' => 'aws.query',
-                    'sentAs' => 'Tags.member',
-                    'items' => array(
-                        'name' => 'Tag',
-                        'type' => 'object',
-                        'properties' => array(
-                            'Key' => array(
-                                'type' => 'string',
-                            ),
-                            'Value' => array(
-                                'type' => 'string',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'Specified offering does not exist.',
-                    'class' => 'ReservedDBInstancesOfferingNotFoundException',
-                ),
-                array(
-                    'reason' => 'User already has a reservation with the given identifier.',
-                    'class' => 'ReservedDBInstanceAlreadyExistsException',
-                ),
-                array(
-                    'reason' => 'Request would exceed the user\'s DB Instance quota.',
-                    'class' => 'ReservedDBInstanceQuotaExceededException',
-                ),
-            ),
-        ),
         'RebootDBInstance' => array(
             'httpMethod' => 'POST',
             'uri' => '/',
@@ -3358,11 +2518,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'RebootDBInstance',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'DBInstanceIdentifier' => array(
                     'required' => true,
@@ -3398,11 +2553,6 @@ return array (
                     'location' => 'aws.query',
                     'default' => 'RemoveSourceIdentifierFromSubscription',
                 ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
                 'SubscriptionName' => array(
                     'required' => true,
                     'type' => 'string',
@@ -3425,50 +2575,6 @@ return array (
                 ),
             ),
         ),
-        'RemoveTagsFromResource' => array(
-            'httpMethod' => 'POST',
-            'uri' => '/',
-            'class' => 'Aws\\Common\\Command\\QueryCommand',
-            'responseClass' => 'EmptyOutput',
-            'responseType' => 'model',
-            'parameters' => array(
-                'Action' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => 'RemoveTagsFromResource',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
-                ),
-                'ResourceName' => array(
-                    'required' => true,
-                    'type' => 'string',
-                    'location' => 'aws.query',
-                ),
-                'TagKeys' => array(
-                    'required' => true,
-                    'type' => 'array',
-                    'location' => 'aws.query',
-                    'sentAs' => 'TagKeys.member',
-                    'items' => array(
-                        'name' => 'String',
-                        'type' => 'string',
-                    ),
-                ),
-            ),
-            'errorResponses' => array(
-                array(
-                    'reason' => 'DBInstanceIdentifier does not refer to an existing DB instance.',
-                    'class' => 'DBInstanceNotFoundException',
-                ),
-                array(
-                    'reason' => 'DBSnapshotIdentifier does not refer to an existing DB snapshot.',
-                    'class' => 'DBSnapshotNotFoundException',
-                ),
-            ),
-        ),
         'ResetDBParameterGroup' => array(
             'httpMethod' => 'POST',
             'uri' => '/',
@@ -3480,11 +2586,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'ResetDBParameterGroup',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'DBParameterGroupName' => array(
                     'required' => true,
@@ -3561,11 +2662,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'RestoreDBInstanceFromDBSnapshot',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'DBInstanceIdentifier' => array(
                     'required' => true,
@@ -3732,11 +2828,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'RestoreDBInstanceToPointInTime',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'SourceDBInstanceIdentifier' => array(
                     'required' => true,
@@ -3921,11 +3012,6 @@ return array (
                     'static' => true,
                     'location' => 'aws.query',
                     'default' => 'RevokeDBSecurityGroupIngress',
-                ),
-                'Version' => array(
-                    'static' => true,
-                    'location' => 'aws.query',
-                    'default' => '2014-09-01',
                 ),
                 'DBSecurityGroupName' => array(
                     'required' => true,
@@ -4581,57 +3667,6 @@ return array (
                 ),
             ),
         ),
-        'DBSubnetGroupWrapper' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'DBSubnetGroup' => array(
-                    'type' => 'object',
-                    'location' => 'xml',
-                    'data' => array(
-                        'wrapper' => true,
-                    ),
-                    'properties' => array(
-                        'DBSubnetGroupName' => array(
-                            'type' => 'string',
-                        ),
-                        'DBSubnetGroupDescription' => array(
-                            'type' => 'string',
-                        ),
-                        'VpcId' => array(
-                            'type' => 'string',
-                        ),
-                        'SubnetGroupStatus' => array(
-                            'type' => 'string',
-                        ),
-                        'Subnets' => array(
-                            'type' => 'array',
-                            'items' => array(
-                                'name' => 'Subnet',
-                                'type' => 'object',
-                                'sentAs' => 'Subnet',
-                                'properties' => array(
-                                    'SubnetIdentifier' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'SubnetAvailabilityZone' => array(
-                                        'type' => 'object',
-                                        'properties' => array(
-                                            'Name' => array(
-                                                'type' => 'string',
-                                            ),
-                                        ),
-                                    ),
-                                    'SubnetStatus' => array(
-                                        'type' => 'string',
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
         'DBEngineVersionMessage' => array(
             'type' => 'object',
             'additionalProperties' => true,
@@ -5232,63 +4267,6 @@ return array (
                 ),
             ),
         ),
-        'DBSubnetGroupMessage' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'Marker' => array(
-                    'type' => 'string',
-                    'location' => 'xml',
-                ),
-                'DBSubnetGroups' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'items' => array(
-                        'name' => 'DBSubnetGroup',
-                        'type' => 'object',
-                        'sentAs' => 'DBSubnetGroup',
-                        'properties' => array(
-                            'DBSubnetGroupName' => array(
-                                'type' => 'string',
-                            ),
-                            'DBSubnetGroupDescription' => array(
-                                'type' => 'string',
-                            ),
-                            'VpcId' => array(
-                                'type' => 'string',
-                            ),
-                            'SubnetGroupStatus' => array(
-                                'type' => 'string',
-                            ),
-                            'Subnets' => array(
-                                'type' => 'array',
-                                'items' => array(
-                                    'name' => 'Subnet',
-                                    'type' => 'object',
-                                    'sentAs' => 'Subnet',
-                                    'properties' => array(
-                                        'SubnetIdentifier' => array(
-                                            'type' => 'string',
-                                        ),
-                                        'SubnetAvailabilityZone' => array(
-                                            'type' => 'object',
-                                            'properties' => array(
-                                                'Name' => array(
-                                                    'type' => 'string',
-                                                ),
-                                            ),
-                                        ),
-                                        'SubnetStatus' => array(
-                                            'type' => 'string',
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
         'EngineDefaultsWrapper' => array(
             'type' => 'object',
             'additionalProperties' => true,
@@ -5755,146 +4733,6 @@ return array (
                 ),
             ),
         ),
-        'ReservedDBInstanceMessage' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'Marker' => array(
-                    'type' => 'string',
-                    'location' => 'xml',
-                ),
-                'ReservedDBInstances' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'items' => array(
-                        'name' => 'ReservedDBInstance',
-                        'type' => 'object',
-                        'sentAs' => 'ReservedDBInstance',
-                        'properties' => array(
-                            'ReservedDBInstanceId' => array(
-                                'type' => 'string',
-                            ),
-                            'ReservedDBInstancesOfferingId' => array(
-                                'type' => 'string',
-                            ),
-                            'DBInstanceClass' => array(
-                                'type' => 'string',
-                            ),
-                            'StartTime' => array(
-                                'type' => 'string',
-                            ),
-                            'Duration' => array(
-                                'type' => 'numeric',
-                            ),
-                            'FixedPrice' => array(
-                                'type' => 'numeric',
-                            ),
-                            'UsagePrice' => array(
-                                'type' => 'numeric',
-                            ),
-                            'CurrencyCode' => array(
-                                'type' => 'string',
-                            ),
-                            'DBInstanceCount' => array(
-                                'type' => 'numeric',
-                            ),
-                            'ProductDescription' => array(
-                                'type' => 'string',
-                            ),
-                            'OfferingType' => array(
-                                'type' => 'string',
-                            ),
-                            'MultiAZ' => array(
-                                'type' => 'boolean',
-                            ),
-                            'State' => array(
-                                'type' => 'string',
-                            ),
-                            'RecurringCharges' => array(
-                                'type' => 'array',
-                                'items' => array(
-                                    'name' => 'RecurringCharge',
-                                    'type' => 'object',
-                                    'sentAs' => 'RecurringCharge',
-                                    'properties' => array(
-                                        'RecurringChargeAmount' => array(
-                                            'type' => 'numeric',
-                                        ),
-                                        'RecurringChargeFrequency' => array(
-                                            'type' => 'string',
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-        'ReservedDBInstancesOfferingMessage' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'Marker' => array(
-                    'type' => 'string',
-                    'location' => 'xml',
-                ),
-                'ReservedDBInstancesOfferings' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'items' => array(
-                        'name' => 'ReservedDBInstancesOffering',
-                        'type' => 'object',
-                        'sentAs' => 'ReservedDBInstancesOffering',
-                        'properties' => array(
-                            'ReservedDBInstancesOfferingId' => array(
-                                'type' => 'string',
-                            ),
-                            'DBInstanceClass' => array(
-                                'type' => 'string',
-                            ),
-                            'Duration' => array(
-                                'type' => 'numeric',
-                            ),
-                            'FixedPrice' => array(
-                                'type' => 'numeric',
-                            ),
-                            'UsagePrice' => array(
-                                'type' => 'numeric',
-                            ),
-                            'CurrencyCode' => array(
-                                'type' => 'string',
-                            ),
-                            'ProductDescription' => array(
-                                'type' => 'string',
-                            ),
-                            'OfferingType' => array(
-                                'type' => 'string',
-                            ),
-                            'MultiAZ' => array(
-                                'type' => 'boolean',
-                            ),
-                            'RecurringCharges' => array(
-                                'type' => 'array',
-                                'items' => array(
-                                    'name' => 'RecurringCharge',
-                                    'type' => 'object',
-                                    'sentAs' => 'RecurringCharge',
-                                    'properties' => array(
-                                        'RecurringChargeAmount' => array(
-                                            'type' => 'numeric',
-                                        ),
-                                        'RecurringChargeFrequency' => array(
-                                            'type' => 'string',
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
         'DownloadDBLogFilePortionDetails' => array(
             'type' => 'object',
             'additionalProperties' => true,
@@ -5913,29 +4751,6 @@ return array (
                 ),
             ),
         ),
-        'TagListMessage' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'TagList' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'items' => array(
-                        'name' => 'Tag',
-                        'type' => 'object',
-                        'sentAs' => 'Tag',
-                        'properties' => array(
-                            'Key' => array(
-                                'type' => 'string',
-                            ),
-                            'Value' => array(
-                                'type' => 'string',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
         'DBParameterGroupNameMessage' => array(
             'type' => 'object',
             'additionalProperties' => true,
@@ -5943,76 +4758,6 @@ return array (
                 'DBParameterGroupName' => array(
                     'type' => 'string',
                     'location' => 'xml',
-                ),
-            ),
-        ),
-        'ReservedDBInstanceWrapper' => array(
-            'type' => 'object',
-            'additionalProperties' => true,
-            'properties' => array(
-                'ReservedDBInstance' => array(
-                    'type' => 'object',
-                    'location' => 'xml',
-                    'data' => array(
-                        'wrapper' => true,
-                    ),
-                    'properties' => array(
-                        'ReservedDBInstanceId' => array(
-                            'type' => 'string',
-                        ),
-                        'ReservedDBInstancesOfferingId' => array(
-                            'type' => 'string',
-                        ),
-                        'DBInstanceClass' => array(
-                            'type' => 'string',
-                        ),
-                        'StartTime' => array(
-                            'type' => 'string',
-                        ),
-                        'Duration' => array(
-                            'type' => 'numeric',
-                        ),
-                        'FixedPrice' => array(
-                            'type' => 'numeric',
-                        ),
-                        'UsagePrice' => array(
-                            'type' => 'numeric',
-                        ),
-                        'CurrencyCode' => array(
-                            'type' => 'string',
-                        ),
-                        'DBInstanceCount' => array(
-                            'type' => 'numeric',
-                        ),
-                        'ProductDescription' => array(
-                            'type' => 'string',
-                        ),
-                        'OfferingType' => array(
-                            'type' => 'string',
-                        ),
-                        'MultiAZ' => array(
-                            'type' => 'boolean',
-                        ),
-                        'State' => array(
-                            'type' => 'string',
-                        ),
-                        'RecurringCharges' => array(
-                            'type' => 'array',
-                            'items' => array(
-                                'name' => 'RecurringCharge',
-                                'type' => 'object',
-                                'sentAs' => 'RecurringCharge',
-                                'properties' => array(
-                                    'RecurringChargeAmount' => array(
-                                        'type' => 'numeric',
-                                    ),
-                                    'RecurringChargeFrequency' => array(
-                                        'type' => 'string',
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
                 ),
             ),
         ),
@@ -6060,12 +4805,6 @@ return array (
             'limit_key' => 'MaxRecords',
             'result_key' => 'DBSnapshots',
         ),
-        'DescribeDBSubnetGroups' => array(
-            'input_token' => 'Marker',
-            'output_token' => 'Marker',
-            'limit_key' => 'MaxRecords',
-            'result_key' => 'DBSubnetGroups',
-        ),
         'DescribeEngineDefaultParameters' => array(
             'input_token' => 'Marker',
             'output_token' => 'Marker',
@@ -6101,21 +4840,6 @@ return array (
             'output_token' => 'Marker',
             'limit_key' => 'MaxRecords',
             'result_key' => 'OrderableDBInstanceOptions',
-        ),
-        'DescribeReservedDBInstances' => array(
-            'input_token' => 'Marker',
-            'output_token' => 'Marker',
-            'limit_key' => 'MaxRecords',
-            'result_key' => 'ReservedDBInstances',
-        ),
-        'DescribeReservedDBInstancesOfferings' => array(
-            'input_token' => 'Marker',
-            'output_token' => 'Marker',
-            'limit_key' => 'MaxRecords',
-            'result_key' => 'ReservedDBInstancesOfferings',
-        ),
-        'ListTagsForResource' => array(
-            'result_key' => 'TagList',
         ),
     ),
     'waiters' => array(

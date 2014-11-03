@@ -29,24 +29,24 @@ class SignatureV3Https extends AbstractSignature
     public function signRequest(RequestInterface $request, CredentialsInterface $credentials)
     {
         // Add a date header if one is not set
-        if (!$request->hasHeader('date') && !$request->hasHeader('x-amz-date')) {
+        if (!$request->hasHeader('date') && !$request->hasHeader('x-nifty-date')) {
             $request->setHeader('Date', gmdate(DateFormat::RFC1123, $this->getTimestamp()));
         }
 
         // Add the security token if one is present
         if ($credentials->getSecurityToken()) {
-            $request->setHeader('x-amz-security-token', $credentials->getSecurityToken());
+            $request->setHeader('x-nifty-security-token', $credentials->getSecurityToken());
         }
 
         // Determine the string to sign
-        $stringToSign = (string) ($request->getHeader('Date') ?: $request->getHeader('x-amz-date'));
-        $request->getParams()->set('aws.string_to_sign', $stringToSign);
+        $stringToSign = (string) ($request->getHeader('Date') ?: $request->getHeader('x-nifty-date'));
+        $request->getParams()->set('nifty.string_to_sign', $stringToSign);
 
         // Calculate the signature
         $signature = base64_encode(hash_hmac('sha256', $stringToSign, $credentials->getSecretKey(), true));
 
         // Add the authorization header to the request
-        $headerFormat = 'AWS3-HTTPS AWSAccessKeyId=%s,Algorithm=HmacSHA256,Signature=%s';
-        $request->setHeader('X-Amzn-Authorization', sprintf($headerFormat, $credentials->getAccessKeyId(), $signature));
+        $headerFormat = 'NIFTY3-HTTPS NiftyAccessKeyId=%s,Algorithm=HmacSHA256,Signature=%s';
+        $request->setHeader('X-Nifty-Authorization', sprintf($headerFormat, $credentials->getAccessKeyId(), $signature));
     }
 }

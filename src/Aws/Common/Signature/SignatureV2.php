@@ -34,7 +34,7 @@ class SignatureV2 extends AbstractSignature
         $this->addParameter($request, 'Timestamp', gmdate('c', $timestamp));
         $this->addParameter($request, 'SignatureVersion', '2');
         $this->addParameter($request, 'SignatureMethod', 'HmacSHA256');
-        $this->addParameter($request, 'AWSAccessKeyId', $credentials->getAccessKeyId());
+        $this->addParameter($request, 'AccessKeyId', $credentials->getAccessKeyId());
 
         if ($token = $credentials->getSecurityToken()) {
             $this->addParameter($request, 'SecurityToken', $token);

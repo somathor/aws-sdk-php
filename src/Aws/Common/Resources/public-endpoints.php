@@ -8,11 +8,11 @@ return array(
         'east-1/s3' => array(
             'endpoint' => 'ncss.nifty.com'
         ),
-        'east-2/s3' => array(
-            'endpoint' => 'east-2-ncss.nifty.com'
-        ),
         'west-1/s3' => array(
             'endpoint' => 'west-1-ncss.nifty.com'
+        ),
+        'east-1/ceph' => array(
+            'endpoint' => 'east-1.os.cloud.nifty.com'
         ),
         '*/rdb' => array(
             'endpoint' => '{service}.jp-{region}.api.cloud.nifty.com'
